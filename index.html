@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zakir Ali | WordPress Plugin Architect</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Tailwind Config -->
     <script>
         tailwind.config = {
-            darkMode: 'class', 
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         slate: { 850: '#1e293b', 950: '#020617' },
                         brand: {
-                            wp: '#21759b',      
-                            php: '#777bb4',     
-                            woo: '#96588a',     
-                            react: '#61dafb',   
-                            elementor: '#E31B6D' 
+                            wp: '#21759b',
+                            php: '#777bb4',
+                            woo: '#96588a',
+                            react: '#61dafb',
+                            elementor: '#E31B6D'
                         }
                     },
                     fontFamily: {
@@ -34,7 +35,8 @@
     </script>
 
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -43,53 +45,190 @@
             --brand-wp: #21759b;
             --card-glow: rgba(33, 117, 155, 0.2);
         }
+
         .dark {
             --card-glow: rgba(33, 117, 155, 0.45);
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        .dark ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
         /* --- PAGE LOADER ANIMATION --- */
         #loader {
-            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
-            background-color: #020617; z-index: 9999; transition: all 0.5s ease-out;
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #020617;
+            z-index: 9999;
+            transition: all 0.5s ease-out;
         }
-        .loader-logo { width: 100px; height: 100px; fill: none; stroke: #21759b; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-        .hexagon-path { stroke-dasharray: 300; stroke-dashoffset: 300; animation: drawHex 2s ease-in-out forwards; }
-        .letter-z-path { stroke-dasharray: 200; stroke-dashoffset: 200; animation: drawZ 1.5s ease-in-out 1s forwards; }
-        .logo-fill-path { fill: #21759b; opacity: 0; animation: fadeInFill 0.5s ease-in-out 2.5s forwards; }
-        @keyframes drawHex { to { stroke-dashoffset: 0; } }
-        @keyframes drawZ { to { stroke-dashoffset: 0; } }
-        @keyframes fadeInFill { to { opacity: 0.15; } }
+
+        .loader-logo {
+            width: 100px;
+            height: 100px;
+            fill: none;
+            stroke: #21759b;
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .hexagon-path {
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: drawHex 2s ease-in-out forwards;
+        }
+
+        .letter-z-path {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawZ 1.5s ease-in-out 1s forwards;
+        }
+
+        .logo-fill-path {
+            fill: #21759b;
+            opacity: 0;
+            animation: fadeInFill 0.5s ease-in-out 2.5s forwards;
+        }
+
+        @keyframes drawHex {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes drawZ {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes fadeInFill {
+            to {
+                opacity: 0.15;
+            }
+        }
+
 
         /* --- CORE STYLES --- */
-        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .dark .glass-nav { background: rgba(2, 6, 23, 0.85); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        #canvas-container { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-        .perspective-scene { perspective: 2000px; }
-        .tilt-element { transform-style: preserve-3d; will-change: transform; transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); transform: rotateY(-12deg) rotateX(8deg); }
-        .floating-layer { transform: translateZ(80px); pointer-events: none; }
-        body { transition: background-color 0.5s ease; }
-        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .glass-nav {
+            background: rgba(2, 6, 23, 0.85);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #canvas-container {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .perspective-scene {
+            perspective: 2000px;
+        }
+
+        .tilt-element {
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: rotateY(-12deg) rotateX(8deg);
+        }
+
+        .floating-layer {
+            transform: translateZ(80px);
+            pointer-events: none;
+        }
+
+        body {
+            transition: background-color 0.5s ease;
+        }
+
         /* Theme Toggle Sync */
-        .theme-bridge { width: 40px; transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
-        .wheel-button { transition: left 0.6s cubic-bezier(0.65, 0, 0.35, 1), transform 0.6s cubic-bezier(0.65, 0, 0.35, 1); }
-        .group:hover .theme-bridge { width: 135px; }
-        .group:hover .wheel-button { left: calc(100% - 36px); transform: rotate(360deg); }
+        .theme-bridge {
+            width: 40px;
+            transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .wheel-button {
+            transition: left 0.6s cubic-bezier(0.65, 0, 0.35, 1), transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .group:hover .theme-bridge {
+            width: 135px;
+        }
+
+        .group:hover .wheel-button {
+            left: calc(100% - 36px);
+            transform: rotate(360deg);
+        }
 
         /* Chrome Tabs */
-        .chrome-tab { position: relative; background-color: #0f172a; }
-        .chrome-tab::before, .chrome-tab::after { content: ""; position: absolute; bottom: 0; width: 16px; height: 16px; pointer-events: none; }
-        .chrome-tab::before { left: -14px; border-bottom-right-radius: 12px; box-shadow: 6px 0 0 0 #0f172a; }
-        .chrome-tab::after { right: -14px; border-bottom-left-radius: 12px; box-shadow: -6px 0 0 0 #0f172a; }
-        .chrome-tab {border-top-left-radius: 12px; border-top-right-radius: 12px;}
+        .chrome-tab {
+            position: relative;
+            background-color: #0f172a;
+        }
+
+        .chrome-tab::before,
+        .chrome-tab::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+        }
+
+        .chrome-tab::before {
+            left: -14px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 6px 0 0 0 #0f172a;
+        }
+
+        .chrome-tab::after {
+            right: -14px;
+            border-bottom-left-radius: 12px;
+            box-shadow: -6px 0 0 0 #0f172a;
+        }
+
+        .chrome-tab {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
 
         /* Project Image Tint Effect & Shuffle Setup */
         .project-image-wrapper {
@@ -114,12 +253,13 @@
             z-index: 10;
             pointer-events: none;
         }
+
         .project-image-wrapper img {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; 
+            object-fit: cover;
             object-position: top;
             filter: grayscale(100%) contrast(1);
             mix-blend-mode: multiply;
@@ -127,26 +267,45 @@
             opacity: 0;
             z-index: 1;
         }
+
         .project-image-wrapper img.active-slide {
             opacity: 1;
             z-index: 2;
         }
-        .project-image-wrapper:hover::after { opacity: 0; }
-        .project-image-wrapper:hover img { filter: none; mix-blend-mode: normal; }
+
+        .project-image-wrapper:hover::after {
+            opacity: 0;
+        }
+
+        .project-image-wrapper:hover img {
+            filter: none;
+            mix-blend-mode: normal;
+        }
 
         /* STACK CARDS HOVER EFFECT */
-        .magnetic-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .magnetic-card:hover { 
-            transform: translateY(-10px); 
+        .magnetic-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .magnetic-card:hover {
+            transform: translateY(-10px);
             border-color: var(--brand-wp) !important;
             box-shadow: 0 20px 40px var(--card-glow);
         }
 
         /* CODE APPEARANCE ANIMATION */
         @keyframes codeEntrance {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         .animate-code {
             animation: codeEntrance 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
             animation-delay: 300ms;
@@ -157,17 +316,21 @@
         #lightbox-modal {
             transition: opacity 0.3s ease, visibility 0.3s ease;
         }
+
         #lightbox-modal.hidden {
             opacity: 0;
             visibility: hidden;
-            display: flex; 
+            display: flex;
         }
+
         #lightbox-img {
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-300 font-sans antialiased selection:bg-brand-wp selection:text-white relative overflow-x-hidden">
+
+<body
+    class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-300 font-sans antialiased selection:bg-brand-wp selection:text-white relative overflow-x-hidden">
 
     <!-- PAGE LOADER -->
     <div id="loader">
@@ -179,142 +342,215 @@
     </div>
 
     <!-- LIGHTBOX MODAL -->
-    <div id="lightbox-modal" class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4 md:p-12">
-        <button id="lightbox-close" class="absolute top-6 right-6 text-white/50 hover:text-white transition-all z-[210]">
+    <div id="lightbox-modal"
+        class="fixed inset-0 z-[200] hidden bg-black/95 flex items-center justify-center p-4 md:p-12">
+        <button id="lightbox-close"
+            class="absolute top-6 right-6 text-white/50 hover:text-white transition-all z-[210]">
             <i data-lucide="x" class="w-10 h-10"></i>
         </button>
-        <button id="lightbox-prev" class="absolute left-4 md:left-10 text-white/30 hover:text-white transition-all z-[210] p-2 bg-black/20 rounded-full"><i data-lucide="chevron-left" class="w-12 h-12"></i></button>
-        <button id="lightbox-next" class="absolute right-4 md:right-10 text-white/30 hover:text-white transition-all z-[210] p-2 bg-black/20 rounded-full"><i data-lucide="chevron-right" class="w-12 h-12"></i></button>
-        <img id="lightbox-img" src="" alt="Preview" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl scale-95 transition-all duration-300">
+        <button id="lightbox-prev"
+            class="absolute left-4 md:left-10 text-white/30 hover:text-white transition-all z-[210] p-2 bg-black/20 rounded-full"><i
+                data-lucide="chevron-left" class="w-12 h-12"></i></button>
+        <button id="lightbox-next"
+            class="absolute right-4 md:right-10 text-white/30 hover:text-white transition-all z-[210] p-2 bg-black/20 rounded-full"><i
+                data-lucide="chevron-right" class="w-12 h-12"></i></button>
+        <img id="lightbox-img" src="" alt="Preview"
+            class="max-w-full max-h-full object-contain rounded-lg shadow-2xl scale-95 transition-all duration-300">
     </div>
 
     <div id="content-body" style="opacity: 0;">
         <canvas id="canvas-container"></canvas>
 
         <!-- THEME TOGGLE -->
-        <div id="theme-toggle-wrapper" class="fixed bottom-6 left-6 z-[100] group cursor-pointer h-10 flex items-center">
-            <div class="theme-bridge relative h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full shadow-xl flex items-center overflow-hidden">
-                <span id="theme-text" class="ml-4 whitespace-nowrap text-[10px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">Switch Theme</span>
-                <div id="wheel-icon-container" class="wheel-button absolute left-[2px] w-[34px] h-[34px] flex items-center justify-center bg-brand-wp text-white rounded-full shadow-md z-20">
+        <div id="theme-toggle-wrapper"
+            class="fixed bottom-6 left-6 z-[100] group cursor-pointer h-10 flex items-center">
+            <div
+                class="theme-bridge relative h-10 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full shadow-xl flex items-center overflow-hidden">
+                <span id="theme-text"
+                    class="ml-4 whitespace-nowrap text-[10px] font-bold tracking-widest text-slate-500 dark:text-slate-400 uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500">Switch
+                    Theme</span>
+                <div id="wheel-icon-container"
+                    class="wheel-button absolute left-[2px] w-[34px] h-[34px] flex items-center justify-center bg-brand-wp text-white rounded-full shadow-md z-20">
                     <i data-lucide="moon" class="w-4 h-4"></i>
                 </div>
             </div>
         </div>
 
         <!-- NAV -->
-        <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 border-b border-slate-200 dark:border-white/5 py-4">
+        <nav id="navbar"
+            class="fixed w-full z-50 transition-all duration-300 border-b border-slate-200 dark:border-white/5 py-4">
             <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
                 <a href="#" class="flex items-center gap-2.5 group">
                     <div class="relative w-[26px] h-[26px] flex items-center justify-center">
-                        <svg class="w-full h-full stroke-brand-wp fill-none" viewBox="0 0 100 100" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-full h-full stroke-brand-wp fill-none" viewBox="0 0 100 100" stroke-width="8"
+                            stroke-linecap="round" stroke-linejoin="round">
                             <path d="M 50,5 L 90,25 L 90,75 L 50,95 L 10,75 L 10,25 Z" />
                             <path d="M 30,35 L 70,35 L 30,65 L 70,65" />
                         </svg>
                     </div>
-                    <span class="text-xl font-bold text-slate-950 dark:text-white">ZakirAli<span class="text-brand-wp">.dev</span></span>
+                    <span class="text-xl font-bold text-slate-950 dark:text-white">ZakirAli<span
+                            class="text-brand-wp">.dev</span></span>
                 </a>
                 <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
                     <a href="#home" class="hover:text-brand-wp transition">Home</a>
                     <a href="#skills" class="hover:text-brand-wp transition">Stack</a>
                     <a href="#projects" class="hover:text-brand-wp transition">Plugins</a>
-                    <a href="#contact" class="px-5 py-2.5 bg-brand-wp hover:bg-sky-600 text-white rounded-lg transition shadow-lg shadow-sky-900/20">Hire Me</a>
+                    <a href="#contact"
+                        class="px-5 py-2.5 bg-brand-wp hover:bg-sky-600 text-white rounded-lg transition shadow-lg shadow-sky-900/20">Hire
+                        Me</a>
                 </div>
-                <button id="mobile-btn" class="md:hidden text-slate-950 dark:text-white p-2"><i data-lucide="menu"></i></button>
+                <button id="mobile-btn" class="md:hidden text-slate-950 dark:text-white p-2"><i
+                        data-lucide="menu"></i></button>
             </div>
         </nav>
 
         <!-- HERO -->
         <section id="home" class="min-h-screen flex items-center pt-28 pb-12 px-6 relative">
-             <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-stretch relative z-10">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-stretch relative z-10">
                 <div class="flex flex-col justify-center space-y-8 py-6">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-wp shadow-sm w-fit">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Custom WordPress Engineering
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-wp shadow-sm w-fit">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Custom WordPress
+                        Engineering
                     </div>
                     <h1 class="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white leading-[1.15]">
                         Engineering <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-wp to-sky-500">Custom Logic</span> <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-wp to-sky-500">Custom
+                            Logic</span> <br>
                         Where Standard Plugins Fall Short.
                     </h1>
                     <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
-                        I architect high-performance solutions for complex requirements that the WordPress repository doesn't provide. bridge the gap with clean code and bespoke visual widgets.
+                        I architect high-performance solutions for complex requirements that the WordPress repository
+                        doesn't provide. bridge the gap with clean code and bespoke visual widgets.
                     </p>
-                    <a href="#projects" class="px-7 py-3 w-fit bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition shadow-xl">
+                    <a href="#projects"
+                        class="px-7 py-3 w-fit bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition shadow-xl">
                         View Portfolio <i data-lucide="arrow-right" class="inline ml-2"></i>
                     </a>
                 </div>
 
                 <div id="tilt-wrapper" class="perspective-scene hidden md:flex flex-col h-full min-h-[550px]">
-                    <div id="hero-tilt-card" class="tilt-element bg-slate-900 rounded-xl border border-slate-800 shadow-2xl flex flex-col h-full relative">
-                        <div class="floating-layer absolute -top-10 -right-10 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-2xl z-30 animate-bounce">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg" class="w-10 h-10" alt="WP">
+                    <div id="hero-tilt-card"
+                        class="tilt-element bg-slate-900 rounded-xl border border-slate-800 shadow-2xl flex flex-col h-full relative">
+                        <div
+                            class="floating-layer absolute -top-10 -right-10 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-2xl z-30 animate-bounce">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+                                class="w-10 h-10" alt="WP">
                         </div>
-                        <div class="floating-layer absolute -bottom-10 -left-10 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-2xl z-30 animate-bounce delay-bounce">
+                        <div
+                            class="floating-layer absolute -bottom-10 -left-10 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-2xl z-30 animate-bounce delay-bounce">
                             <img src="https://cdn.simpleicons.org/elementor/E31B6D" class="w-10 h-10" alt="Elementor">
                         </div>
 
-                        <div class="bg-slate-950 px-4 pt-4 flex items-center justify-between shrink-0 relative z-20 rounded-tl-xl rounded-tr-xl">
-                            <div class="flex items-center gap-0">
-                                <div id="tab-elementor" class="px-6 py-2 text-[11px] font-mono transition-all border-none chrome-tab text-brand-elementor uppercase">AdvancedWidget.php</div>
-                                <div id="tab-plugin" class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent uppercase">BespokeLogic.php</div>
-                            </div>
-                            <!-- macOS Window Dots (Right Side) -->
-                            <div class="flex gap-1.5 px-2">
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#27C93F] opacity-80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] opacity-80"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F56] opacity-80"></div>
-                            </div>
+                        <div
+                            class="bg-slate-950 px-4 pt-4 flex items-center gap-0 shrink-0 relative z-20 rounded-tl-xl rounded-tr-xl">
+                            <div id="tab-elementor"
+                                class="px-6 py-2 text-[11px] font-mono transition-all border-none chrome-tab text-brand-elementor uppercase">
+                                AdvancedWidget.php</div>
+                            <div id="tab-plugin"
+                                class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent uppercase">
+                                BespokeLogic.php</div>
                         </div>
 
                         <div class="relative flex-grow">
-                            <div id="window-elementor" class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-100 overflow-hidden">
+                            <div id="window-elementor"
+                                class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-100 overflow-hidden">
                                 <div class="code-content animate-code">
-                                    <div><span class="text-brand-php">class</span> <span class="text-yellow-400">Advanced_UI_Widget</span> <span class="text-brand-php">extends</span> <span class="text-brand-elementor">\Widget_Base</span> {</div>
-                                    <div class="pl-4 mt-1"><span class="text-brand-php">public function</span> <span class="text-blue-400">get_name</span>() { <span class="text-green-400">'bespoke_ui'</span>; }</div>
-                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span class="text-blue-400">get_title</span>() { <span class="text-green-400">'Bespoke Data Engine'</span>; }</div>
+                                    <div><span class="text-brand-php">class</span> <span
+                                            class="text-yellow-400">Advanced_UI_Widget</span> <span
+                                            class="text-brand-php">extends</span> <span
+                                            class="text-brand-elementor">\Widget_Base</span> {</div>
+                                    <div class="pl-4 mt-1"><span class="text-brand-php">public function</span> <span
+                                            class="text-blue-400">get_name</span>() { <span
+                                            class="text-green-400">'bespoke_ui'</span>; }</div>
+                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span
+                                            class="text-blue-400">get_title</span>() { <span
+                                            class="text-green-400">'Bespoke Data Engine'</span>; }</div>
                                     <br>
                                     <div class="pl-4 text-slate-500">// Custom control registration logic</div>
-                                    <div class="pl-4"><span class="text-brand-php">protected function</span> <span class="text-blue-400">register_controls</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-react">$this</span>-><span class="text-blue-400">start_controls_section</span>(<span class="text-green-400">'logic_settings'</span>, [</div>
-                                    <div class="pl-12"><span class="text-green-400">'label'</span> => <span class="text-green-400">'Engine Parameters'</span></div>
+                                    <div class="pl-4"><span class="text-brand-php">protected function</span> <span
+                                            class="text-blue-400">register_controls</span>() {</div>
+                                    <div class="pl-8"><span class="text-brand-react">$this</span>-><span
+                                            class="text-blue-400">start_controls_section</span>(<span
+                                            class="text-green-400">'logic_settings'</span>, [</div>
+                                    <div class="pl-12"><span class="text-green-400">'label'</span> => <span
+                                            class="text-green-400">'Engine Parameters'</span></div>
                                     <div class="pl-8">]);</div>
-                                    <div class="pl-8 mt-1"><span class="text-brand-react">$this</span>-><span class="text-blue-400">add_control</span>(<span class="text-green-400">'source'</span>, [</div>
-                                    <div class="pl-12"><span class="text-green-400">'type'</span> => <span class="text-brand-elementor">\Controls_Manager::SELECT</span>,</div>
-                                    <div class="pl-12"><span class="text-green-400">'options'</span> => [<span class="text-green-400">'api'</span> => <span class="text-green-400">'REST'</span>]</div>
+                                    <div class="pl-8 mt-1"><span class="text-brand-react">$this</span>-><span
+                                            class="text-blue-400">add_control</span>(<span
+                                            class="text-green-400">'source'</span>, [</div>
+                                    <div class="pl-12"><span class="text-green-400">'type'</span> => <span
+                                            class="text-brand-elementor">\Controls_Manager::SELECT</span>,</div>
+                                    <div class="pl-12"><span class="text-green-400">'options'</span> => [<span
+                                            class="text-green-400">'api'</span> => <span
+                                            class="text-green-400">'REST'</span>]</div>
                                     <div class="pl-8">]);</div>
-                                    <div class="pl-8"><span class="text-brand-react">$this</span>-><span class="text-blue-400">end_controls_section</span>();</div>
+                                    <div class="pl-8"><span class="text-brand-react">$this</span>-><span
+                                            class="text-blue-400">end_controls_section</span>();</div>
                                     <div class="pl-4">}</div>
                                     <br>
                                     <div class="pl-4 text-slate-500">// Specialized rendering</div>
-                                    <div class="pl-4"><span class="text-brand-php">protected function</span> <span class="text-blue-400">render</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-react">$settings</span> = <span class="text-brand-react">$this</span>-><span class="text-blue-400">get_settings_for_display</span>();</div>
-                                    <div class="pl-8"><span class="text-brand-react">$data</span> = <span class="text-brand-wp">apply_filters</span>(<span class="text-green-400">'custom_fetch'</span>, <span class="text-brand-react">$settings</span>);</div>
-                                    <div class="pl-8 mt-1"><span class="text-brand-php">include</span> <span class="text-brand-wp">locate_template</span>(<span class="text-green-400">'views/bespoke.php'</span>);</div>
+                                    <div class="pl-4"><span class="text-brand-php">protected function</span> <span
+                                            class="text-blue-400">render</span>() {</div>
+                                    <div class="pl-8"><span class="text-brand-react">$settings</span> = <span
+                                            class="text-brand-react">$this</span>-><span
+                                            class="text-blue-400">get_settings_for_display</span>();</div>
+                                    <div class="pl-8"><span class="text-brand-react">$data</span> = <span
+                                            class="text-brand-wp">apply_filters</span>(<span
+                                            class="text-green-400">'custom_fetch'</span>, <span
+                                            class="text-brand-react">$settings</span>);</div>
+                                    <div class="pl-8 mt-1"><span class="text-brand-php">include</span> <span
+                                            class="text-brand-wp">locate_template</span>(<span
+                                            class="text-green-400">'views/bespoke.php'</span>);</div>
                                     <div class="pl-4">}</div>
                                     <div>}</div>
                                 </div>
                             </div>
-                            <div id="window-plugin" class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden">
+                            <div id="window-plugin"
+                                class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden">
                                 <div class="code-content">
-                                    <div><span class="text-brand-php">namespace</span> <span class="text-yellow-400">WP_Architect\Engine</span>;</div>
+                                    <div><span class="text-brand-php">namespace</span> <span
+                                            class="text-yellow-400">WP_Architect\Engine</span>;</div>
                                     <br>
-                                    <div><span class="text-brand-php">class</span> <span class="text-yellow-400">Core_Handler</span> {</div>
-                                    <div class="pl-4 mt-2"><span class="text-brand-php">public function</span> <span class="text-blue-400">__construct</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-wp">add_action</span>(<span class="text-green-400">'rest_api_init'</span>, [<span class="text-brand-react">$this</span>, <span class="text-green-400">'api'</span>]);</div>
-                                    <div class="pl-8"><span class="text-brand-wp">add_filter</span>(<span class="text-green-400">'secure_headers'</span>, [<span class="text-brand-react">$this</span>, <span class="text-green-400">'shield'</span>]);</div>
+                                    <div><span class="text-brand-php">class</span> <span
+                                            class="text-yellow-400">Core_Handler</span> {</div>
+                                    <div class="pl-4 mt-2"><span class="text-brand-php">public function</span> <span
+                                            class="text-blue-400">__construct</span>() {</div>
+                                    <div class="pl-8"><span class="text-brand-wp">add_action</span>(<span
+                                            class="text-green-400">'rest_api_init'</span>, [<span
+                                            class="text-brand-react">$this</span>, <span
+                                            class="text-green-400">'api'</span>]);</div>
+                                    <div class="pl-8"><span class="text-brand-wp">add_filter</span>(<span
+                                            class="text-green-400">'secure_headers'</span>, [<span
+                                            class="text-brand-react">$this</span>, <span
+                                            class="text-green-400">'shield'</span>]);</div>
                                     <div class="pl-4">}</div>
                                     <br>
                                     <div class="pl-4 text-slate-500">// Custom REST Endpoint registration</div>
-                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span class="text-blue-400">api</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-wp">register_rest_route</span>(<span class="text-green-400">'v3/bespoke'</span>, <span class="text-green-400">'/run'</span>, [</div>
-                                    <div class="pl-12"><span class="text-green-400">'methods'</span> => <span class="text-green-400">'POST'</span>,</div>
-                                    <div class="pl-12"><span class="text-green-400">'callback'</span> => [<span class="text-brand-react">$this</span>, <span class="text-green-400">'process'</span>]</div>
+                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span
+                                            class="text-blue-400">api</span>() {</div>
+                                    <div class="pl-8"><span class="text-brand-wp">register_rest_route</span>(<span
+                                            class="text-green-400">'v3/bespoke'</span>, <span
+                                            class="text-green-400">'/run'</span>, [</div>
+                                    <div class="pl-12"><span class="text-green-400">'methods'</span> => <span
+                                            class="text-green-400">'POST'</span>,</div>
+                                    <div class="pl-12"><span class="text-green-400">'callback'</span> => [<span
+                                            class="text-brand-react">$this</span>, <span
+                                            class="text-green-400">'process'</span>]</div>
                                     <div class="pl-8">]);</div>
                                     <div class="pl-4">}</div>
                                     <br>
                                     <div class="pl-4 text-slate-500">// Sanitization & Logic handling</div>
-                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span class="text-blue-400">process</span>(<span class="text-brand-react">$req</span>) {</div>
-                                    <div class="pl-8"><span class="text-brand-react">$params</span> = <span class="text-brand-react">$req</span>-><span class="text-blue-400">get_json_params</span>();</div>
-                                    <div class="pl-8"><span class="text-brand-php">return</span> <span class="text-brand-wp">rest_ensure_response</span>([<span class="text-green-400">'status'</span> => <span class="text-brand-wp">time</span>()]);</div>
+                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span
+                                            class="text-blue-400">process</span>(<span
+                                            class="text-brand-react">$req</span>) {</div>
+                                    <div class="pl-8"><span class="text-brand-react">$params</span> = <span
+                                            class="text-brand-react">$req</span>-><span
+                                            class="text-blue-400">get_json_params</span>();</div>
+                                    <div class="pl-8"><span class="text-brand-php">return</span> <span
+                                            class="text-brand-wp">rest_ensure_response</span>([<span
+                                            class="text-green-400">'status'</span> => <span
+                                            class="text-brand-wp">time</span>()]);</div>
                                     <div class="pl-4">}</div>
                                     <div>}</div>
                                 </div>
@@ -326,38 +562,140 @@
         </section>
 
         <!-- SKILLS -->
-        <section id="skills" class="py-24 bg-white/60 dark:bg-slate-900/80 border-y border-slate-200 dark:border-slate-800 relative z-10 backdrop-blur-sm">
+        <section id="skills"
+            class="py-24 bg-white/60 dark:bg-slate-900/80 border-y border-slate-200 dark:border-slate-800 relative z-10 backdrop-blur-sm">
             <div class="max-w-7xl mx-auto px-6">
-                <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-16 text-center underline decoration-brand-wp decoration-4 underline-offset-8">Technical Expertise</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
-                    <div class="magnetic-card p-8 bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl">
-                        <div class="mb-5 text-brand-wp flex justify-center lg:justify-start"><i data-lucide="globe" size="32"></i></div>
-                        <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">WordPress Core</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">Expert theme architecture, performance optimization, and database migrations.</p>
+                <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-16 text-center">
+                    Technical Expertise</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                        <div
+                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+                                class="w-8 h-8 object-contain dark:invert-[.8] dark:brightness-200" alt="WordPress">
+                        </div>
+                        <div
+                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-wp/30 flex flex-col">
+                            <span
+                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-wp/70">CORE</span>
+                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">WordPress Core</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                Expert theme
+                                architecture,
+                                performance optimization, and database migrations.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                Specializing in custom REST API endpoints, WP-CLI automation, and complex multisite
+                                architectures.</p>
+                        </div>
                     </div>
-                    <div class="magnetic-card p-8 bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl">
-                        <div class="mb-5 text-orange-500 flex justify-center lg:justify-start"><i data-lucide="code-2" size="32"></i></div>
-                        <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">HTML & CSS</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">Precision styling using Tailwind. Crafting accessible, responsive web layouts.</p>
+                    <div
+                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                        <div
+                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                class="w-8 h-8 object-contain" alt="HTML5">
+                        </div>
+                        <div
+                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-orange-500/30 flex flex-col">
+                            <span
+                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-orange-500/70">STYLE</span>
+                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">HTML & CSS</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                Precision styling using
+                                Tailwind.
+                                Crafting accessible, responsive web layouts.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Utilizing
+                                advanced CSS Grid/Flexbox patterns and animation libraries for fluid, high-performance
+                                UI.</p>
+                        </div>
                     </div>
-                    <div class="magnetic-card p-8 bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl">
-                        <div class="mb-5 text-yellow-500 flex justify-center lg:justify-start"><i data-lucide="zap" size="32"></i></div>
-                        <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">JavaScript</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">Modern ES6+ logic and async data handling for dynamic front-end interactivity.</p>
+                    <div
+                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                        <div
+                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                class="w-8 h-8 object-contain" alt="JavaScript">
+                        </div>
+                        <div
+                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-yellow-500/30 flex flex-col">
+                            <span
+                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-yellow-500/70">LOGIC</span>
+                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">JavaScript</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                Modern ES6+ logic and
+                                async
+                                data
+                                handling for dynamic front-end interactivity.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                Experienced in implementing state management and reactive patterns for seamless
+                                application workflows.</p>
+                        </div>
                     </div>
-                    <div class="magnetic-card p-8 bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl">
-                        <div class="mb-5 text-brand-php flex justify-center lg:justify-start"><i data-lucide="box" size="32"></i></div>
-                        <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Custom Plugins</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">Engineering bespoke backend PHP logic that goes beyond standard repo options.</p>
+                    <div
+                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                        <div
+                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                                class="w-10 h-10 object-contain" alt="PHP">
+                        </div>
+                        <div
+                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-php/30 flex flex-col">
+                            <span
+                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-php/70">BACKEND</span>
+                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Custom Plugins</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                Engineering bespoke
+                                backend
+                                PHP
+                                logic that goes beyond standard repo options.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Developing
+                                scalable hooks, custom post types, and secure admin interfaces for enhanced
+                                functionality.</p>
+                        </div>
                     </div>
-                    <div class="magnetic-card p-8 bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl">
-                        <div class="mb-5 text-brand-elementor flex justify-center lg:justify-start"><i data-lucide="edit-3" size="32"></i></div>
-                        <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Extensions</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">Building Elementor widgets and custom Gutenberg blocks using React hooks.</p>
+                    <div
+                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                        <div
+                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                            <img src="https://cdn.simpleicons.org/elementor/E31B6D" class="w-8 h-8 object-contain"
+                                alt="Elementor">
+                        </div>
+                        <div
+                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-elementor/30 flex flex-col">
+                            <span
+                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-elementor/70">UI</span>
+                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Extensions</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                Building Elementor
+                                widgets and
+                                custom Gutenberg blocks using React hooks.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Building
+                                high-performance UI components with dynamic controls and optimized rendering cycles.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(99,91,255,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                        <div
+                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                            <img src="https://cdn.simpleicons.org/stripe/635BFF" class="w-8 h-8 object-contain"
+                                alt="API & Integrations">
+                        </div>
+                        <div
+                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-[#635BFF]/30 flex flex-col">
+                            <span
+                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-[#635BFF]/70">CONNECT</span>
+                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">API & Integrations</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                Architecting seamless data flows between WordPress and third-party ecosystems.</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                Specialized in REST/GraphQL endpoints, OAuth, and real-time synchronization with
+                                services like Stripe and Salesforce.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
         </section>
+
 
         <!-- PROJECTS -->
         <section id="projects" class="py-32 px-6 max-w-6xl mx-auto relative z-10">
@@ -380,17 +718,32 @@
                     </div>
                     <div class="w-full md:w-1/2 md:-ml-20 text-right z-10 mt-6 md:mt-0 flex flex-col items-end">
                         <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
-                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Bespoke Business Assessment Engine</h3>
-                        <div class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                            A sophisticated WordPress-based diagnostic platform developed for FBTransitions. Features a custom-built algorithmic scoring engine that evaluates business health across multiple dimensions. Includes a seamless PayFast gateway integration and professional consulting results.
-                            <br>Engineered with a proprietary algorithmic core, this platform goes beyond simple data collection to perform real-time diagnostic analysis, translating complex user inputs into actionable business classifications and risk assessments through custom-coded PHP logic.
+                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Bespoke Business
+                            Assessment Engine</h3>
+                        <div
+                            class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                            A sophisticated WordPress-based diagnostic platform developed for FBTransitions. Features a
+                            custom-built algorithmic scoring engine that evaluates business health across multiple
+                            dimensions. Includes a seamless PayFast gateway integration and professional consulting
+                            results.
+                            <br>Engineered with a proprietary algorithmic core, this platform goes beyond simple data
+                            collection to perform real-time diagnostic analysis, translating complex user inputs into
+                            actionable business classifications and risk assessments through custom-coded PHP logic.
                         </div>
-                        <ul class="flex flex-wrap gap-4 justify-end text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
-                            <li>WordPress Core</li><li>PHP</li><li>AJAX</li><li>MySQL</li><li>Dompdf</li><li>Rest API</li>
+                        <ul
+                            class="flex flex-wrap gap-4 justify-end text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                            <li>WordPress Core</li>
+                            <li>PHP</li>
+                            <li>AJAX</li>
+                            <li>MySQL</li>
+                            <li>Dompdf</li>
+                            <li>Rest API</li>
                         </ul>
                         <div class="flex justify-end gap-5 text-slate-900 dark:text-white">
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github" size="20"></i></a>
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link" size="20"></i></a>
+                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
+                                    size="20"></i></a>
+                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link"
+                                    size="20"></i></a>
                         </div>
                     </div>
                 </div>
@@ -406,15 +759,28 @@
                     </div>
                     <div class="w-full md:w-1/2 md:-mr-20 text-left z-10 mt-6 md:mt-0 flex flex-col items-start">
                         <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
-                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Woocommerce Orders Analytics Dashboard</h3>
-                        <div class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                            A sophisticated, high-performance analytics extension for WooCommerce designed to handle million-row datasets with near-instant responsiveness. It features custom-engineered SQL queries, predictive sales forecasting using cumulative trends, and deep-dive product/category comparison tools. The dashboard replaces standard WordPress reporting with a premium, data-dense interface optimized for enterprise-level store management                        </div>
-                        <ul class="flex flex-wrap gap-4 justify-start text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
-                            <li>PHP</li><li>SQL</li><li>Charts.js</li><li>Rest API</li><li>Woocommerce Hooks</li>
+                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Woocommerce Orders
+                            Analytics Dashboard</h3>
+                        <div
+                            class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                            A sophisticated, high-performance analytics extension for WooCommerce designed to handle
+                            million-row datasets with near-instant responsiveness. It features custom-engineered SQL
+                            queries, predictive sales forecasting using cumulative trends, and deep-dive
+                            product/category comparison tools. The dashboard replaces standard WordPress reporting with
+                            a premium, data-dense interface optimized for enterprise-level store management </div>
+                        <ul
+                            class="flex flex-wrap gap-4 justify-start text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                            <li>PHP</li>
+                            <li>SQL</li>
+                            <li>Charts.js</li>
+                            <li>Rest API</li>
+                            <li>Woocommerce Hooks</li>
                         </ul>
                         <div class="flex justify-start gap-5 text-slate-900 dark:text-white">
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github" size="20"></i></a>
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link" size="20"></i></a>
+                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
+                                    size="20"></i></a>
+                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link"
+                                    size="20"></i></a>
                         </div>
                     </div>
                 </div>
@@ -424,10 +790,12 @@
         <!-- CONTACT -->
         <footer id="contact" class="pt-8 relative z-10 bg-slate-950 text-white text-center">
             <h2 class="text-4xl font-extrabold mb-6 tracking-tighter uppercase">Need a Custom Solution?</h2>
-            <a href="mailto:contact@zakirali.dev" class="inline-flex items-center gap-2 px-10 py-4 bg-brand-wp text-white rounded-full hover:bg-sky-600 transition font-bold shadow-xl active:scale-95">
+            <a href="mailto:contact@zakirali.dev"
+                class="inline-flex items-center gap-2 px-10 py-4 bg-brand-wp text-white rounded-full hover:bg-sky-600 transition font-bold shadow-xl active:scale-95">
                 <i data-lucide="mail"></i> Discuss Your Project
             </a>
-            <p class="mt-20 text-slate-500 text-sm font-medium">&copy; 2024 Zakir Ali. WordPress Architect Excellence.</p>
+            <p class="mt-20 text-slate-500 text-sm font-medium">&copy; 2024 Zakir Ali. WordPress Architect Excellence.
+            </p>
         </footer>
     </div>
 
@@ -447,7 +815,7 @@
             const targetIcon = isDark ? 'sun' : 'moon';
             themeIconContainer.innerHTML = `<i data-lucide="${targetIcon}" class="w-4 h-4"></i>`;
             themeText.textContent = isDark ? 'Light Mode' : 'Dark Mode';
-            lucide.createIcons(); 
+            lucide.createIcons();
         }
 
         themeWrapper.addEventListener('click', () => {
@@ -475,7 +843,7 @@
                 const rect = wrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left; const y = e.clientY - rect.top;
                 const xc = rect.width / 2; const yc = rect.height / 2;
-                card.style.transition = 'none'; 
+                card.style.transition = 'none';
                 card.style.transform = `rotateY(${(x - xc) / 12}deg) rotateX(${-(y - yc) / 12}deg)`;
             });
             wrapper.addEventListener('mouseleave', () => {
@@ -521,8 +889,8 @@
         lucide.createIcons();
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
-            if (window.scrollY > 50) nav.classList.add('glass-nav', 'shadow-md'); 
-            else nav.classList.remove('glass-nav', 'shadow-md'); 
+            if (window.scrollY > 50) nav.classList.add('glass-nav', 'shadow-md');
+            else nav.classList.remove('glass-nav', 'shadow-md');
         });
 
         // 1. Image Shuffle in Cards
@@ -537,7 +905,7 @@
                     if (!next || next.tagName !== 'IMG') next = imgs[0];
                     active.classList.remove('active-slide');
                     next.classList.add('active-slide');
-                }, 4000); 
+                }, 4000);
             });
         };
         startImageShuffle();
@@ -559,7 +927,7 @@
                 lightboxImg.src = currentGallery[currentIndex];
                 lightboxImg.style.opacity = '1';
             }, 200);
-            
+
             lightboxPrev.style.display = currentGallery.length > 1 ? 'block' : 'none';
             lightboxNext.style.display = currentGallery.length > 1 ? 'block' : 'none';
         };
@@ -571,7 +939,7 @@
                 currentGallery = imgs;
                 currentIndex = imgs.indexOf(activeImg);
                 lightboxModal.classList.remove('hidden');
-                document.body.style.overflow = 'hidden'; 
+                document.body.style.overflow = 'hidden';
                 updateLightboxImage();
                 setTimeout(() => lightboxImg.classList.replace('scale-95', 'scale-100'), 10);
             });
@@ -584,7 +952,7 @@
         lightboxNext.addEventListener('click', nextSlide);
         lightboxPrev.addEventListener('click', prevSlide);
         lightboxClose.addEventListener('click', closeLightbox);
-        lightboxModal.addEventListener('click', (e) => { if(e.target === lightboxModal) closeLightbox(); });
+        lightboxModal.addEventListener('click', (e) => { if (e.target === lightboxModal) closeLightbox(); });
 
         window.addEventListener('keydown', (e) => {
             if (lightboxModal.classList.contains('hidden')) return;
@@ -596,7 +964,7 @@
         const canvas = document.getElementById("canvas-container");
         const ctx = canvas.getContext("2d");
         let particlesArray;
-        let mouse = { x: null, y: null, radius: (window.innerHeight/80) * (window.innerWidth/80) }
+        let mouse = { x: null, y: null, radius: (window.innerHeight / 80) * (window.innerWidth / 80) }
         window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
 
         class Particle {
@@ -606,8 +974,8 @@
                 if (this.x > canvas.width || this.x < 0) this.dx = -this.dx;
                 if (this.y > canvas.height || this.y < 0) this.dy = -this.dy;
                 let dx = mouse.x - this.x; let dy = mouse.y - this.y;
-                let dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < mouse.radius + this.size){
+                let dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < mouse.radius + this.size) {
                     if (mouse.x < this.x && this.x < canvas.width - this.size * 10) this.x += 3;
                     if (mouse.x > this.x && this.x > this.size * 10) this.x -= 3;
                     if (mouse.y < this.y && this.y < canvas.height - this.size * 10) this.y += 3;
@@ -624,7 +992,7 @@
             let num = (canvas.height * canvas.width) / 9000;
             for (let i = 0; i < num; i++) {
                 let s = Math.random() * 2 + 1;
-                particlesArray.push(new Particle(Math.random()*canvas.width, Math.random()*canvas.height, (Math.random()*2)-1, (Math.random()*2)-1, s, colors[Math.floor(Math.random()*colors.length)]));
+                particlesArray.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height, (Math.random() * 2) - 1, (Math.random() * 2) - 1, s, colors[Math.floor(Math.random() * colors.length)]));
             }
         }
         function animate() {
@@ -635,9 +1003,9 @@
             const lineColor = 'rgba(33, 117, 155,';
             for (let a = 0; a < particlesArray.length; a++) {
                 for (let b = a; b < particlesArray.length; b++) {
-                    let d = ((particlesArray[a].x - particlesArray[b].x)**2) + ((particlesArray[a].y - particlesArray[b].y)**2);
-                    if (d < (canvas.width/7)*(canvas.height/7)) {
-                        let op = isDark ? 1 - (d/20000) : 0.4 - (d/30000);
+                    let d = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
+                    if (d < (canvas.width / 7) * (canvas.height / 7)) {
+                        let op = isDark ? 1 - (d / 20000) : 0.4 - (d / 30000);
                         ctx.strokeStyle = lineColor + op + ')';
                         ctx.lineWidth = 1; ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -647,7 +1015,8 @@
                 }
             }
         }
-        window.addEventListener('resize', () => { initParticles(); mouse.radius = (canvas.height/80)*(canvas.width/80); });
+        window.addEventListener('resize', () => { initParticles(); mouse.radius = (canvas.height / 80) * (canvas.width / 80); });
     </script>
 </body>
+
 </html>
