@@ -445,11 +445,14 @@
                         <div
                             class="bg-slate-950 px-4 pt-4 flex items-center gap-0 shrink-0 relative z-20 rounded-tl-xl rounded-tr-xl">
                             <div id="tab-elementor"
-                                class="px-6 py-2 text-[11px] font-mono transition-all border-none chrome-tab text-brand-elementor uppercase">
+                                class="px-6 py-2 text-[11px] font-mono transition-all border-none chrome-tab text-brand-elementor uppercase cursor-default">
                                 AdvancedWidget.php</div>
                             <div id="tab-plugin"
                                 class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent uppercase">
                                 BespokeLogic.php</div>
+                            <div id="tab-react"
+                                class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent uppercase">
+                                Dashboard.jsx</div>
                         </div>
 
                         <div class="relative flex-grow">
@@ -552,6 +555,32 @@
                                             class="text-green-400">'status'</span> => <span
                                             class="text-brand-wp">time</span>()]);</div>
                                     <div class="pl-4">}</div>
+                                    <div>}</div>
+                                </div>
+                            </div>
+                            <div id="window-react"
+                                class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden">
+                                <div class="code-content">
+                                    <div class="text-slate-500 mb-2">// Modern React SPA Architecture</div>
+                                    <div><span class="text-brand-php">import</span> <span class="text-yellow-400">React</span>, { <span class="text-blue-400">useState</span>, <span class="text-blue-400">useEffect</span> } <span class="text-brand-php">from</span> <span class="text-green-400">'react'</span>;</div>
+                                    <br>
+                                    <div><span class="text-brand-php">export default function</span> <span class="text-yellow-400">Dashboard</span>() {</div>
+                                    <div class="pl-4 mt-2"><span class="text-brand-react">const</span> [<span class="text-blue-400">data</span>, <span class="text-blue-400">setData</span>] = <span class="text-blue-400">useState</span>([]);</div>
+                                    <br>
+                                    <div class="pl-4 text-slate-500">// Fetching live headless WordPress data</div>
+                                    <div class="pl-4"><span class="text-blue-400">useEffect</span>(() => {</div>
+                                    <div class="pl-8"><span class="text-brand-wp">fetch</span>(<span class="text-green-400">'/wp-json/custom/v1/metrics'</span>)</div>
+                                    <div class="pl-12">.<span class="text-blue-400">then</span>(<span class="text-brand-react">res</span> => <span class="text-brand-react">res</span>.<span class="text-blue-400">json</span>())</div>
+                                    <div class="pl-12">.<span class="text-blue-400">then</span>(<span class="text-brand-react">setData</span>);</div>
+                                    <div class="pl-4">}, []);</div>
+                                    <br>
+                                    <div class="pl-4"><span class="text-brand-php">return</span> (</div>
+                                    <div class="pl-8 text-slate-500">&lt;<span class="text-brand-react">div</span> className=<span class="text-green-400">"grid grid-cols-3 gap-6"</span>&gt;</div>
+                                    <div class="pl-12">{<span class="text-blue-400">data</span>.<span class="text-blue-400">map</span>(<span class="text-brand-react">item</span> => (</div>
+                                    <div class="pl-16 text-slate-500">&lt;<span class="text-brand-react">MetricCard</span> key={<span class="text-brand-react">item</span>.id} value={<span class="text-brand-react">item</span>.value} /&gt;</div>
+                                    <div class="pl-12">))}</div>
+                                    <div class="pl-8 text-slate-500">&lt;/<span class="text-brand-react">div</span>&gt;</div>
+                                    <div class="pl-4">);</div>
                                     <div>}</div>
                                 </div>
                             </div>
@@ -945,35 +974,46 @@
         let activeWindow = 'elementor';
         const winElementor = document.getElementById('window-elementor');
         const winPlugin = document.getElementById('window-plugin');
+        const winReact = document.getElementById('window-react');
         const tabElementor = document.getElementById('tab-elementor');
         const tabPlugin = document.getElementById('tab-plugin');
+        const tabReact = document.getElementById('tab-react');
+
+        const windows = {
+            'elementor': { win: winElementor, tab: tabElementor, color: 'text-brand-elementor' },
+            'plugin': { win: winPlugin, tab: tabPlugin, color: 'text-brand-wp' },
+            'react': { win: winReact, tab: tabReact, color: 'text-brand-react' }
+        };
+        const windowOrder = ['elementor', 'plugin', 'react'];
 
         function switchCode(target) {
-            const contentE = winElementor.querySelector('.code-content');
-            const contentP = winPlugin.querySelector('.code-content');
-            if (target === 'plugin') {
-                winElementor.classList.replace('opacity-100', 'opacity-0');
-                winPlugin.classList.replace('opacity-0', 'opacity-100');
-                tabElementor.className = "px-6 py-2 text-[11px] font-mono text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent border-none";
-                tabPlugin.className = "px-6 py-2 text-[11px] font-mono bg-slate-900 text-brand-wp border-none chrome-tab";
-                contentP.classList.remove('animate-code');
-                void contentP.offsetWidth;
-                contentP.classList.add('animate-code');
-                activeWindow = 'plugin';
-            } else {
-                winPlugin.classList.replace('opacity-100', 'opacity-0');
-                winElementor.classList.replace('opacity-0', 'opacity-100');
-                tabPlugin.className = "px-6 py-2 text-[11px] font-mono text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent border-none";
-                tabElementor.className = "px-6 py-2 text-[11px] font-mono bg-slate-900 text-brand-elementor border-none chrome-tab";
-                contentE.classList.remove('animate-code');
-                void contentE.offsetWidth;
-                contentE.classList.add('animate-code');
-                activeWindow = 'elementor';
-            }
+            Object.keys(windows).forEach(key => {
+                const { win, tab, color } = windows[key];
+                const content = win.querySelector('.code-content');
+                if (key === target) {
+                    win.classList.replace('opacity-0', 'opacity-100');
+                    win.classList.remove('pointer-events-none');
+                    tab.className = `px-6 py-2 text-[11px] font-mono bg-slate-900 ${color} border-none chrome-tab uppercase cursor-default transition-all`;
+                    content.classList.remove('animate-code');
+                    void content.offsetWidth;
+                    content.classList.add('animate-code');
+                } else {
+                    win.classList.replace('opacity-100', 'opacity-0');
+                    win.classList.add('pointer-events-none');
+                    tab.className = `px-6 py-2 text-[11px] font-mono text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent border-none uppercase transition-all`;
+                }
+            });
+            activeWindow = target;
         }
-        setInterval(() => switchCode(activeWindow === 'elementor' ? 'plugin' : 'elementor'), 6000);
+        
+        setInterval(() => {
+            let nextIndex = (windowOrder.indexOf(activeWindow) + 1) % windowOrder.length;
+            switchCode(windowOrder[nextIndex]);
+        }, 6000);
+        
         tabElementor.addEventListener('click', () => switchCode('elementor'));
         tabPlugin.addEventListener('click', () => switchCode('plugin'));
+        tabReact.addEventListener('click', () => switchCode('react'));
 
         lucide.createIcons();
         window.addEventListener('scroll', () => {
