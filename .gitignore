@@ -1,0 +1,5 @@
+backup/
+New folder/
+*.tmp
+.DS_Store
+Thumbs.db
