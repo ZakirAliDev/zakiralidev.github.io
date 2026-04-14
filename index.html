@@ -105,19 +105,19 @@
         .hexagon-path {
             stroke-dasharray: 300;
             stroke-dashoffset: 300;
-            animation: drawHex 2s ease-in-out forwards;
+            animation: drawHex 0.7s ease-in-out forwards;
         }
 
         .letter-z-path {
             stroke-dasharray: 200;
             stroke-dashoffset: 200;
-            animation: drawZ 1.5s ease-in-out 1s forwards;
+            animation: drawZ 0.5s ease-in-out 0.3s forwards;
         }
 
         .logo-fill-path {
             fill: #21759b;
             opacity: 0;
-            animation: fadeInFill 0.5s ease-in-out 2.5s forwards;
+            animation: fadeInFill 0.3s ease-in-out 0.8s forwards;
         }
 
         @keyframes drawHex {
@@ -326,6 +326,12 @@
         #lightbox-img {
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
+
+        /* --- FLOATING ICON DELAYS --- */
+        .delay-bounce {
+            animation-delay: 0.5s;
+        }
+
     </style>
 </head>
 
@@ -394,7 +400,7 @@
                 <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600 dark:text-slate-300">
                     <a href="#home" class="hover:text-brand-wp transition">Home</a>
                     <a href="#skills" class="hover:text-brand-wp transition">Stack</a>
-                    <a href="#projects" class="hover:text-brand-wp transition">Plugins</a>
+                    <a href="#projects" class="hover:text-brand-wp transition">Insights</a>
                     <a href="https://wa.me/+923260107599?text=Hi%20Zakir,%20I%20am%20interested%20in%20discussing%20a%20project!" target="_blank"
                         class="px-5 py-2.5 bg-brand-wp hover:bg-sky-600 text-white rounded-lg transition shadow-lg shadow-sky-900/20">Hire
                         Me</a>
@@ -404,517 +410,606 @@
             </div>
         </nav>
 
-        <!-- HERO -->
-        <section id="home" class="min-h-screen flex items-center pt-28 pb-12 px-6 relative">
-            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-stretch relative z-10">
-                <div class="flex flex-col justify-center space-y-8 py-6">
-                    <div
-                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-wp shadow-sm w-fit">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Custom WordPress
-                        Engineering
+
+            <section id="home" class="min-h-screen flex items-center pt-28 pb-12 px-6 relative">
+                <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-stretch relative z-10">
+                    <div class="flex flex-col justify-center space-y-8 py-6">
+                        <div id="hero-badge"
+                            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs font-bold text-brand-wp shadow-sm w-fit transition-all duration-500">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span id="badge-text" class="transition-opacity duration-300">Advanced Visual Architect</span>
+                        </div>
+                        <div class="space-y-6 w-full md:max-w-2xl">
+                            <h1 class="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white leading-[1.15] min-h-[160px] md:min-h-[210px] w-full">
+                                <span id="headline-top" class="transition-opacity duration-300">Crafting</span> <br>
+                                <span id="headline-main" class="text-transparent bg-clip-text bg-gradient-to-r from-brand-wp to-sky-500 transition-opacity duration-300">Bespoke
+                                    Widgets</span> <br>
+                                <span id="headline-suffix" class="transition-opacity duration-300 block mt-1 text-3xl md:text-4xl opacity-80">Where Standard Designs Reach Limits.</span>
+                            </h1>
+                            <p id="hero-desc" class="text-lg text-slate-600 dark:text-slate-400 w-full leading-relaxed transition-opacity duration-300 min-h-[100px] md:min-h-[80px]">
+                                I bridge the gap between complex design visions and technical execution through custom-coded Elementor extensions that push development boundaries and redefine standard UI patterns.
+                            </p>
+                        </div>
+                        <a href="#projects"
+                            class="px-7 py-3 w-fit bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition shadow-xl">
+                            View Portfolio <i data-lucide="arrow-right" class="inline ml-2"></i>
+                        </a>
                     </div>
-                    <h1 class="text-5xl md:text-6xl font-extrabold text-slate-950 dark:text-white leading-[1.15]">
-                        Engineering <br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-wp to-sky-500">Custom
-                            Logic</span> <br>
-                        Where Standard Plugins Fall Short.
-                    </h1>
-                    <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
-                        I architect high-performance solutions for complex requirements that the WordPress repository
-                        doesn't provide. bridge the gap with clean code and bespoke visual widgets.
-                    </p>
-                    <a href="#projects"
-                        class="px-7 py-3 w-fit bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition shadow-xl">
-                        View Portfolio <i data-lucide="arrow-right" class="inline ml-2"></i>
-                    </a>
-                </div>
-
-                <div id="tilt-wrapper" class="perspective-scene hidden md:flex flex-col h-full min-h-[550px]">
-                    <div id="hero-tilt-card"
-                        class="tilt-element bg-slate-900 rounded-xl border border-slate-800 shadow-2xl flex flex-col h-full relative">
-                        <div
-                            class="floating-layer absolute -top-10 -right-10 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-2xl z-30 animate-bounce">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
-                                class="w-10 h-10" alt="WP">
-                        </div>
-                        <div
-                            class="floating-layer absolute -bottom-10 -left-10 bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-700 shadow-2xl z-30 animate-bounce delay-bounce">
-                            <img src="https://cdn.simpleicons.org/elementor/E31B6D" class="w-10 h-10" alt="Elementor">
-                        </div>
-
-                        <div
-                            class="bg-slate-950 px-4 pt-4 flex items-center gap-0 shrink-0 relative z-20 rounded-tl-xl rounded-tr-xl">
-                            <div id="tab-elementor"
-                                class="px-6 py-2 text-[11px] font-mono transition-all border-none chrome-tab text-brand-elementor uppercase cursor-default">
-                                AdvancedWidget.php</div>
-                            <div id="tab-plugin"
-                                class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent uppercase">
-                                BespokeLogic.php</div>
-                            <div id="tab-react"
-                                class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent uppercase">
-                                Dashboard.jsx</div>
-                        </div>
-
-                        <div class="relative flex-grow">
-                            <div id="window-elementor"
-                                class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-100 overflow-hidden">
-                                <div class="code-content animate-code">
-                                    <div><span class="text-brand-php">class</span> <span
-                                            class="text-yellow-400">Advanced_UI_Widget</span> <span
-                                            class="text-brand-php">extends</span> <span
-                                            class="text-brand-elementor">\Widget_Base</span> {</div>
-                                    <div class="pl-4 mt-1"><span class="text-brand-php">public function</span> <span
-                                            class="text-blue-400">get_name</span>() { <span
-                                            class="text-green-400">'bespoke_ui'</span>; }</div>
-                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span
-                                            class="text-blue-400">get_title</span>() { <span
-                                            class="text-green-400">'Bespoke Data Engine'</span>; }</div>
-                                    <br>
-                                    <div class="pl-4 text-slate-500">// Custom control registration logic</div>
-                                    <div class="pl-4"><span class="text-brand-php">protected function</span> <span
-                                            class="text-blue-400">register_controls</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-react">$this</span>-><span
-                                            class="text-blue-400">start_controls_section</span>(<span
-                                            class="text-green-400">'logic_settings'</span>, [</div>
-                                    <div class="pl-12"><span class="text-green-400">'label'</span> => <span
-                                            class="text-green-400">'Engine Parameters'</span></div>
-                                    <div class="pl-8">]);</div>
-                                    <div class="pl-8 mt-1"><span class="text-brand-react">$this</span>-><span
-                                            class="text-blue-400">add_control</span>(<span
-                                            class="text-green-400">'source'</span>, [</div>
-                                    <div class="pl-12"><span class="text-green-400">'type'</span> => <span
-                                            class="text-brand-elementor">\Controls_Manager::SELECT</span>,</div>
-                                    <div class="pl-12"><span class="text-green-400">'options'</span> => [<span
-                                            class="text-green-400">'api'</span> => <span
-                                            class="text-green-400">'REST'</span>]</div>
-                                    <div class="pl-8">]);</div>
-                                    <div class="pl-8"><span class="text-brand-react">$this</span>-><span
-                                            class="text-blue-400">end_controls_section</span>();</div>
-                                    <div class="pl-4">}</div>
-                                    <br>
-                                    <div class="pl-4 text-slate-500">// Specialized rendering</div>
-                                    <div class="pl-4"><span class="text-brand-php">protected function</span> <span
-                                            class="text-blue-400">render</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-react">$settings</span> = <span
-                                            class="text-brand-react">$this</span>-><span
-                                            class="text-blue-400">get_settings_for_display</span>();</div>
-                                    <div class="pl-8"><span class="text-brand-react">$data</span> = <span
-                                            class="text-brand-wp">apply_filters</span>(<span
-                                            class="text-green-400">'custom_fetch'</span>, <span
-                                            class="text-brand-react">$settings</span>);</div>
-                                    <div class="pl-8 mt-1"><span class="text-brand-php">include</span> <span
-                                            class="text-brand-wp">locate_template</span>(<span
-                                            class="text-green-400">'views/bespoke.php'</span>);</div>
-                                    <div class="pl-4">}</div>
-                                    <div>}</div>
+    
+                    <div id="tilt-wrapper" class="perspective-scene hidden md:flex flex-col h-full min-h-[550px]">
+                        <div id="hero-tilt-card"
+                            class="tilt-element bg-slate-900 rounded-xl border border-slate-800 shadow-2xl flex flex-col h-full relative">
+                            <div
+                                class="floating-layer absolute -top-7 -right-7 bg-white dark:bg-slate-800 p-2.5 rounded-lg border border-slate-700 shadow-2xl z-30 animate-bounce">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+                                    class="w-8 h-8" alt="WP">
+                            </div>
+                            <div
+                                class="floating-layer absolute -top-7 -left-7 bg-white dark:bg-slate-800 p-2.5 rounded-lg border border-slate-700 shadow-2xl z-30 animate-bounce delay-bounce">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                    class="w-8 h-8" alt="React">
+                            </div>
+                            <div
+                                class="floating-layer absolute -bottom-7 -left-7 bg-white dark:bg-slate-800 p-2.5 rounded-lg border border-slate-700 shadow-2xl z-30 animate-bounce delay-bounce">
+                                <img src="https://cdn.simpleicons.org/elementor/E31B6D" class="w-8 h-8" alt="Elementor">
+                            </div>
+                            <div
+                                class="floating-layer absolute -bottom-7 -right-7 bg-white dark:bg-slate-800 p-2.5 rounded-lg border border-slate-700 shadow-2xl z-30 animate-bounce">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                    class="w-8 h-8" alt="JS">
+                            </div>
+    
+                            <div
+                                class="bg-slate-950 px-4 pt-4 flex items-center gap-0 shrink-0 relative z-20 rounded-tl-xl rounded-tr-xl">
+                                <div id="tab-elementor"
+                                    class="px-6 py-2 text-[11px] font-mono transition-all border-none chrome-tab text-brand-elementor cursor-default">
+                                    AdvancedWidget.php</div>
+                                <div id="tab-plugin"
+                                    class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent">
+                                    BespokeLogic.php</div>
+                                <div id="tab-react"
+                                    class="px-6 py-2 text-[11px] font-mono transition-all border-none text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent">
+                                    Dashboard.jsx</div>
+                            </div>
+    
+                            <div class="relative flex-grow">
+                                <div id="window-elementor"
+                                    class="code-window-fade no-scrollbar absolute inset-0 font-mono text-[13px] leading-relaxed text-slate-300 opacity-100 overflow-hidden flex">
+                                    <!-- Sidebar -->
+                                    <div class="w-[30%] border-r border-slate-800 bg-slate-950/50 p-4 overflow-y-auto no-scrollbar">
+                                        <div class="text-[9px] font-bold tracking-widest text-slate-500 mb-4 uppercase">Explorer</div>
+                                        <div class="space-y-1.5">
+                                            <div class="flex items-center gap-1.5 text-slate-300 text-[11px]"><i data-lucide="chevron-down" class="w-3 h-3"></i> widgets</div>
+                                            <div class="pl-3 space-y-1.5 border-l border-slate-800/50 ml-1.5">
+                                                <div class="flex items-center gap-1.5 text-white bg-slate-800/80 rounded text-[11px] px-1.5 py-0.5 mt-1 relative -left-1.5"><i data-lucide="file-code" class="w-3 h-3 text-brand-elementor"></i> AdvancedWidget.php</div>
+                                                <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-code" class="w-3 h-3 text-brand-php"></i> StyleHelpers.php</div>
+                                            </div>
+                                            <div class="flex items-center gap-1.5 text-slate-300 text-[11px] pt-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> assets</div>
+                                        </div>
+                                    </div>
+                                    <!-- Main Code -->
+                                    <div class="w-[70%] p-6 overflow-y-auto no-scrollbar relative code-content animate-code">
+                                        <div><span class="text-brand-php">class</span> <span
+                                                class="text-yellow-400">Advanced_UI_Widget</span> <span
+                                                class="text-brand-php">extends</span> <span
+                                                class="text-brand-elementor">\Widget_Base</span> {</div>
+                                        <div class="pl-4 mt-1"><span class="text-brand-php">public function</span> <span
+                                                class="text-blue-400">get_name</span>() { <span
+                                                class="text-green-400">'bespoke_ui'</span>; }</div>
+                                        <div class="pl-4"><span class="text-brand-php">public function</span> <span
+                                                class="text-blue-400">get_title</span>() { <span
+                                                class="text-green-400">'Bespoke Data Engine'</span>; }</div>
+                                        <br>
+                                        <div class="pl-4 text-slate-500">// Custom control registration logic</div>
+                                        <div class="pl-4"><span class="text-brand-php">protected function</span> <span
+                                                class="text-blue-400">register_controls</span>() {</div>
+                                        <div class="pl-8"><span class="text-brand-react">$this</span>-><span
+                                                class="text-blue-400">start_controls_section</span>(<span
+                                                class="text-green-400">'logic_settings'</span>, [</div>
+                                        <div class="pl-12"><span class="text-green-400">'label'</span> => <span
+                                                class="text-green-400">'Engine Parameters'</span></div>
+                                        <div class="pl-8">]);</div>
+                                        <div class="pl-8 mt-1"><span class="text-brand-react">$this</span>-><span
+                                                class="text-blue-400">add_control</span>(<span
+                                                class="text-green-400">'source'</span>, [</div>
+                                        <div class="pl-12"><span class="text-green-400">'type'</span> => <span
+                                                class="text-brand-elementor">\Controls_Manager::SELECT</span>,</div>
+                                        <div class="pl-12"><span class="text-green-400">'options'</span> => [<span
+                                                class="text-green-400">'api'</span> => <span
+                                                class="text-green-400">'REST'</span>]</div>
+                                        <div class="pl-8">]);</div>
+                                        <div class="pl-8"><span class="text-brand-react">$this</span>-><span
+                                                class="text-blue-400">end_controls_section</span>();</div>
+                                        <div class="pl-4">}</div>
+                                        <br>
+                                        <div class="pl-4 text-slate-500">// Specialized rendering</div>
+                                        <div class="pl-4"><span class="text-brand-php">protected function</span> <span
+                                                class="text-blue-400">render</span>() {</div>
+                                        <div class="pl-8"><span class="text-brand-react">$settings</span> = <span
+                                                class="text-brand-react">$this</span>-><span
+                                                class="text-blue-400">get_settings_for_display</span>();</div>
+                                        <div class="pl-8"><span class="text-brand-react">$data</span> = <span
+                                                class="text-brand-wp">apply_filters</span>(<span
+                                                class="text-green-400">'custom_fetch'</span>, <span
+                                                class="text-brand-react">$settings</span>);</div>
+                                        <div class="pl-8 mt-1"><span class="text-brand-php">include</span> <span
+                                                class="text-brand-wp">locate_template</span>(<span
+                                                class="text-green-400">'views/bespoke.php'</span>);</div>
+                                        <div class="pl-4">}</div>
+                                        <div>}</div>
+                                    </div>
+                                </div>
+                                <div id="window-plugin"
+                                    class="code-window-fade no-scrollbar absolute inset-0 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden flex">
+                                    <!-- Sidebar -->
+                                    <div class="w-[30%] border-r border-slate-800 bg-slate-950/50 p-4 overflow-y-auto no-scrollbar">
+                                        <div class="text-[9px] font-bold tracking-widest text-slate-500 mb-4 uppercase">Explorer</div>
+                                        <div class="space-y-1.5">
+                                            <div class="flex items-center gap-1.5 text-slate-300 text-[11px]"><i data-lucide="chevron-down" class="w-3 h-3"></i> src</div>
+                                            <div class="pl-3 space-y-1.5 border-l border-slate-800/50 ml-1.5">
+                                                <div class="flex items-center gap-1.5 text-white bg-slate-800/80 rounded text-[11px] px-1.5 py-0.5 mt-1 relative -left-1.5"><i data-lucide="file-code" class="w-3 h-3 text-brand-php"></i> BespokeLogic.php</div>
+                                                <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-code" class="w-3 h-3 text-brand-php"></i> APIHandler.php</div>
+                                                <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-code" class="w-3 h-3 text-brand-php"></i> AuthManager.php</div>
+                                            </div>
+                                            <div class="flex items-center gap-1.5 text-slate-400 text-[11px] pt-1"><i data-lucide="file-json" class="w-3 h-3 text-yellow-200"></i> composer.json</div>
+                                        </div>
+                                    </div>
+                                    <!-- Main Code -->
+                                    <div class="w-[70%] p-6 overflow-y-auto no-scrollbar relative code-content">
+                                        <div><span class="text-brand-php">namespace</span> <span
+                                                class="text-yellow-400">WP_Architect\Engine</span>;</div>
+                                        <br>
+                                        <div><span class="text-brand-php">class</span> <span
+                                                class="text-yellow-400">Core_Handler</span> {</div>
+                                        <div class="pl-4 mt-2"><span class="text-brand-php">public function</span> <span
+                                                class="text-blue-400">__construct</span>() {</div>
+                                        <div class="pl-8"><span class="text-brand-wp">add_action</span>(<span
+                                                class="text-green-400">'rest_api_init'</span>, [<span
+                                                class="text-brand-react">$this</span>, <span
+                                                class="text-green-400">'api'</span>]);</div>
+                                        <div class="pl-8"><span class="text-brand-wp">add_filter</span>(<span
+                                                class="text-green-400">'secure_headers'</span>, [<span
+                                                class="text-brand-react">$this</span>, <span
+                                                class="text-green-400">'shield'</span>]);</div>
+                                        <div class="pl-4">}</div>
+                                        <br>
+                                        <div class="pl-4 text-slate-500">// Custom REST Endpoint registration</div>
+                                        <div class="pl-4"><span class="text-brand-php">public function</span> <span
+                                                class="text-blue-400">api</span>() {</div>
+                                        <div class="pl-8"><span class="text-brand-wp">register_rest_route</span>(<span
+                                                class="text-green-400">'v3/bespoke'</span>, <span
+                                                class="text-green-400">'/run'</span>, [</div>
+                                        <div class="pl-12"><span class="text-green-400">'methods'</span> => <span
+                                                class="text-green-400">'POST'</span>,</div>
+                                        <div class="pl-12"><span class="text-green-400">'callback'</span> => [<span
+                                                class="text-brand-react">$this</span>, <span
+                                                class="text-green-400">'process'</span>]</div>
+                                        <div class="pl-8">]);</div>
+                                        <div class="pl-4">}</div>
+                                        <br>
+                                        <div class="pl-4 text-slate-500">// Sanitization & Logic handling</div>
+                                        <div class="pl-4"><span class="text-brand-php">public function</span> <span
+                                                class="text-blue-400">process</span>(<span
+                                                class="text-brand-react">$req</span>) {</div>
+                                        <div class="pl-8"><span class="text-brand-react">$params</span> = <span
+                                                class="text-brand-react">$req</span>-><span
+                                                class="text-blue-400">get_json_params</span>();</div>
+                                        <div class="pl-8"><span class="text-brand-php">return</span> <span
+                                                class="text-brand-wp">rest_ensure_response</span>([<span
+                                                class="text-green-400">'status'</span> => <span
+                                                class="text-brand-wp">time</span>()]);</div>
+                                        <div class="pl-4">}</div>
+                                        <div>}</div>
+                                    </div>
+                                </div>
+                                <div id="window-react"
+                                    class="code-window-fade absolute inset-0 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden flex">
+                                    <!-- Sidebar -->
+                                    <div class="w-[30%] border-r border-slate-800 bg-slate-950/50 p-4 overflow-y-auto no-scrollbar">
+                                        <div class="text-[9px] font-bold tracking-widest text-slate-500 mb-4 uppercase">Explorer</div>
+                                        <div class="space-y-1.5">
+                                            <div class="flex items-center gap-1.5 text-slate-300 text-[11px]"><i data-lucide="chevron-down" class="w-3 h-3"></i> src</div>
+                                            <div class="pl-3 space-y-1.5 border-l border-slate-800/50 ml-1.5">
+                                                <div class="flex items-center gap-1.5 text-slate-300 text-[11px]"><i data-lucide="chevron-down" class="w-3 h-3"></i> components</div>
+                                                <div class="pl-3 space-y-1.5 border-l border-slate-800/50 ml-1.5">
+                                                    <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-code" class="w-3 h-3 text-brand-react"></i> MetricCard.jsx</div>
+                                                    <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-code" class="w-3 h-3 text-brand-react"></i> ChartView.jsx</div>
+                                                </div>
+                                                <div class="flex items-center gap-1.5 text-white bg-slate-800/80 rounded text-[11px] px-1.5 py-0.5 mt-1 relative -left-1.5"><i data-lucide="file-code" class="w-3 h-3 text-brand-react"></i> Dashboard.jsx</div>
+                                                <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-code" class="w-3 h-3 text-yellow-400"></i> App.js</div>
+                                                <div class="flex items-center gap-1.5 text-slate-400 text-[11px] flex-shrink-0"><i data-lucide="file-code" class="w-3 h-3 text-sky-400"></i> index.css</div>
+                                            </div>
+                                            <div class="flex items-center gap-1.5 text-slate-300 text-[11px] pt-2"><i data-lucide="chevron-right" class="w-3 h-3"></i> public</div>
+                                            <div class="flex items-center gap-1.5 text-slate-400 text-[11px]"><i data-lucide="file-json" class="w-3 h-3 text-yellow-200"></i> package.json</div>
+                                        </div>
+                                    </div>
+                                    <!-- Main Code -->
+                                    <div class="w-[70%] p-6 overflow-y-auto no-scrollbar relative code-content">
+                                        <div class="text-slate-500 mb-2">// Modern React SPA Architecture</div>
+                                        <div><span class="text-brand-php">import</span> <span class="text-yellow-400">React</span>, { <span class="text-blue-400">useState</span>, <span class="text-blue-400">useEffect</span> } <span class="text-brand-php">from</span> <span class="text-green-400">'react'</span>;</div>
+                                        <br>
+                                        <div><span class="text-brand-php">export default function</span> <span class="text-yellow-400">Dashboard</span>() {</div>
+                                        <div class="pl-4 mt-2"><span class="text-brand-react">const</span> [<span class="text-blue-400">data</span>, <span class="text-blue-400">setData</span>] = <span class="text-blue-400">useState</span>([]);</div>
+                                        <br>
+                                        <div class="pl-4 text-slate-500">// Fetching live headless WordPress data</div>
+                                        <div class="pl-4"><span class="text-blue-400">useEffect</span>(() => {</div>
+                                        <div class="pl-8"><span class="text-brand-wp">fetch</span>(<span class="text-green-400">'/wp-json/v1/metrics'</span>)</div>
+                                        <div class="pl-12">.<span class="text-blue-400">then</span>(<span class="text-brand-react">res</span> => <span class="text-brand-react">res</span>.<span class="text-blue-400">json</span>())</div>
+                                        <div class="pl-12">.<span class="text-blue-400">then</span>(<span class="text-brand-react">setData</span>);</div>
+                                        <div class="pl-4">}, []);</div>
+                                        <br>
+                                        <div class="pl-4"><span class="text-brand-php">return</span> (</div>
+                                        <div class="pl-8 text-slate-500">&lt;<span class="text-brand-react">div</span> className=<span class="text-green-400">"grid gap-6"</span>&gt;</div>
+                                        <div class="pl-12">{<span class="text-blue-400">data</span>.<span class="text-blue-400">map</span>(<span class="text-brand-react">item</span> => (</div>
+                                        <div class="pl-16 text-slate-500">&lt;<span class="text-brand-react">Metric</span> key={<span class="text-brand-react">item</span>.id} value={<span class="text-brand-react">item</span>.value} /&gt;</div>
+                                        <div class="pl-12">))}</div>
+                                        <div class="pl-8 text-slate-500">&lt;/<span class="text-brand-react">div</span>&gt;</div>
+                                        <div class="pl-4">);</div>
+                                        <div>}</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div id="window-plugin"
-                                class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden">
-                                <div class="code-content">
-                                    <div><span class="text-brand-php">namespace</span> <span
-                                            class="text-yellow-400">WP_Architect\Engine</span>;</div>
-                                    <br>
-                                    <div><span class="text-brand-php">class</span> <span
-                                            class="text-yellow-400">Core_Handler</span> {</div>
-                                    <div class="pl-4 mt-2"><span class="text-brand-php">public function</span> <span
-                                            class="text-blue-400">__construct</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-wp">add_action</span>(<span
-                                            class="text-green-400">'rest_api_init'</span>, [<span
-                                            class="text-brand-react">$this</span>, <span
-                                            class="text-green-400">'api'</span>]);</div>
-                                    <div class="pl-8"><span class="text-brand-wp">add_filter</span>(<span
-                                            class="text-green-400">'secure_headers'</span>, [<span
-                                            class="text-brand-react">$this</span>, <span
-                                            class="text-green-400">'shield'</span>]);</div>
-                                    <div class="pl-4">}</div>
-                                    <br>
-                                    <div class="pl-4 text-slate-500">// Custom REST Endpoint registration</div>
-                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span
-                                            class="text-blue-400">api</span>() {</div>
-                                    <div class="pl-8"><span class="text-brand-wp">register_rest_route</span>(<span
-                                            class="text-green-400">'v3/bespoke'</span>, <span
-                                            class="text-green-400">'/run'</span>, [</div>
-                                    <div class="pl-12"><span class="text-green-400">'methods'</span> => <span
-                                            class="text-green-400">'POST'</span>,</div>
-                                    <div class="pl-12"><span class="text-green-400">'callback'</span> => [<span
-                                            class="text-brand-react">$this</span>, <span
-                                            class="text-green-400">'process'</span>]</div>
-                                    <div class="pl-8">]);</div>
-                                    <div class="pl-4">}</div>
-                                    <br>
-                                    <div class="pl-4 text-slate-500">// Sanitization & Logic handling</div>
-                                    <div class="pl-4"><span class="text-brand-php">public function</span> <span
-                                            class="text-blue-400">process</span>(<span
-                                            class="text-brand-react">$req</span>) {</div>
-                                    <div class="pl-8"><span class="text-brand-react">$params</span> = <span
-                                            class="text-brand-react">$req</span>-><span
-                                            class="text-blue-400">get_json_params</span>();</div>
-                                    <div class="pl-8"><span class="text-brand-php">return</span> <span
-                                            class="text-brand-wp">rest_ensure_response</span>([<span
-                                            class="text-green-400">'status'</span> => <span
-                                            class="text-brand-wp">time</span>()]);</div>
-                                    <div class="pl-4">}</div>
-                                    <div>}</div>
-                                </div>
-                            </div>
-                            <div id="window-react"
-                                class="code-window-fade no-scrollbar absolute inset-0 p-8 font-mono text-[13px] leading-relaxed text-slate-300 opacity-0 pointer-events-none overflow-hidden">
-                                <div class="code-content">
-                                    <div class="text-slate-500 mb-2">// Modern React SPA Architecture</div>
-                                    <div><span class="text-brand-php">import</span> <span class="text-yellow-400">React</span>, { <span class="text-blue-400">useState</span>, <span class="text-blue-400">useEffect</span> } <span class="text-brand-php">from</span> <span class="text-green-400">'react'</span>;</div>
-                                    <br>
-                                    <div><span class="text-brand-php">export default function</span> <span class="text-yellow-400">Dashboard</span>() {</div>
-                                    <div class="pl-4 mt-2"><span class="text-brand-react">const</span> [<span class="text-blue-400">data</span>, <span class="text-blue-400">setData</span>] = <span class="text-blue-400">useState</span>([]);</div>
-                                    <br>
-                                    <div class="pl-4 text-slate-500">// Fetching live headless WordPress data</div>
-                                    <div class="pl-4"><span class="text-blue-400">useEffect</span>(() => {</div>
-                                    <div class="pl-8"><span class="text-brand-wp">fetch</span>(<span class="text-green-400">'/wp-json/custom/v1/metrics'</span>)</div>
-                                    <div class="pl-12">.<span class="text-blue-400">then</span>(<span class="text-brand-react">res</span> => <span class="text-brand-react">res</span>.<span class="text-blue-400">json</span>())</div>
-                                    <div class="pl-12">.<span class="text-blue-400">then</span>(<span class="text-brand-react">setData</span>);</div>
-                                    <div class="pl-4">}, []);</div>
-                                    <br>
-                                    <div class="pl-4"><span class="text-brand-php">return</span> (</div>
-                                    <div class="pl-8 text-slate-500">&lt;<span class="text-brand-react">div</span> className=<span class="text-green-400">"grid grid-cols-3 gap-6"</span>&gt;</div>
-                                    <div class="pl-12">{<span class="text-blue-400">data</span>.<span class="text-blue-400">map</span>(<span class="text-brand-react">item</span> => (</div>
-                                    <div class="pl-16 text-slate-500">&lt;<span class="text-brand-react">MetricCard</span> key={<span class="text-brand-react">item</span>.id} value={<span class="text-brand-react">item</span>.value} /&gt;</div>
-                                    <div class="pl-12">))}</div>
-                                    <div class="pl-8 text-slate-500">&lt;/<span class="text-brand-react">div</span>&gt;</div>
-                                    <div class="pl-4">);</div>
-                                    <div>}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills"
-            class="py-24 bg-white/60 dark:bg-slate-900/80 border-y border-slate-200 dark:border-slate-800 relative z-10 backdrop-blur-sm">
-            <div class="max-w-7xl mx-auto px-6">
-                <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-16 text-center">
-                    Technical Expertise</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
-                                class="w-8 h-8 object-contain dark:invert-[.8] dark:brightness-200" alt="WordPress">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-wp/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-wp/70">CORE</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">WordPress Core</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Expert theme
-                                architecture,
-                                performance optimization, and database migrations.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                Specializing in custom REST API endpoints, WP-CLI automation, and complex multisite
-                                architectures.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-                                class="w-8 h-8 object-contain" alt="HTML5">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-orange-500/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-orange-500/70">STYLE</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">HTML & CSS</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Precision styling using
-                                Tailwind.
-                                Crafting accessible, responsive web layouts.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Utilizing
-                                advanced CSS Grid/Flexbox patterns and animation libraries for fluid, high-performance
-                                UI.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                                class="w-8 h-8 object-contain" alt="JavaScript">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-yellow-500/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-yellow-500/70">LOGIC</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">JavaScript</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Modern ES6+ logic and
-                                async
-                                data
-                                handling for dynamic front-end interactivity.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                Experienced in implementing state management and reactive patterns for seamless
-                                application workflows.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-                                class="w-10 h-10 object-contain" alt="PHP">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-php/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-php/70">BACKEND</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Custom Plugins</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Engineering bespoke
-                                backend
-                                PHP
-                                logic that goes beyond standard repo options.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Developing
-                                scalable hooks, custom post types, and secure admin interfaces for enhanced
-                                functionality.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.simpleicons.org/elementor/E31B6D" class="w-8 h-8 object-contain"
-                                alt="Elementor">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-elementor/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-elementor/70">UI</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Extensions</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Building Elementor
-                                widgets and
-                                custom Gutenberg blocks using React hooks.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Building
-                                high-performance UI components with dynamic controls and optimized rendering cycles.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(99,91,255,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.simpleicons.org/stripe/635BFF" class="w-8 h-8 object-contain"
-                                alt="API & Integrations">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-[#635BFF]/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-[#635BFF]/70">CONNECT</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">API & Integrations</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Architecting seamless data flows between WordPress and third-party ecosystems.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                Specialized in REST/GraphQL endpoints, OAuth, and real-time synchronization with
-                                services like Stripe and Salesforce.</p>
-                        </div>                    </div>
-                    <!-- CARD 7: React & Vite -->
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(97,218,251,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                                class="w-8 h-8 object-contain" alt="React">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-[#61dafb]/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-[#61dafb]/70">FRONTEND</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">React &amp; Vite</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Building fast, modern SPAs with React 19 hooks, component-driven architecture, and Vite for lightning-fast builds.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                Precision UI with Tailwind CSS 4, crafting responsive and accessible layouts with a utility-first design system.</p>
-                        </div>
-                    </div>
-                    <!-- CARD 8: Node.js & Express -->
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(104,160,99,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                                class="w-8 h-8 object-contain" alt="Node.js">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-green-500/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-green-500/70">BACKEND</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Node.js &amp; Express</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Engineering scalable RESTful APIs with Express, handling authentication, routing, and server-side business logic.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                PDF generation with Puppeteer and automated email delivery pipelines using Nodemailer for production workflows.</p>
-                        </div>
-                    </div>
-                    <!-- CARD 9: Firebase Platform -->
-                    <div
-                        class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(255,160,0,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
-                        <div
-                            class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
-                                class="w-8 h-8 object-contain" alt="Firebase">
-                        </div>
-                        <div
-                            class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-yellow-500/30 flex flex-col">
-                            <span
-                                class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-yellow-500/70">CLOUD</span>
-                            <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Firebase Platform</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
-                                Real-time Firestore databases with role-based security rules and Firebase Auth for secure, scalable user management.</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
-                                Firebase Storage for file and image uploads, with serverless cloud hosting and deployment via Firebase Hosting.</p>
                         </div>
                     </div>
                 </div>
-        </section>
+            </section>
+
+
+        <div class="bg-slate-50/70 dark:bg-slate-900/80 backdrop-blur-sm border-y border-slate-200 dark:border-slate-800">
+            <section id="skills" class="py-24 relative z-10">
+                <div class="max-w-7xl mx-auto px-6">
+                    <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-16 text-center">
+                        Technical Expertise</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+                                    class="w-8 h-8 object-contain dark:invert-[.8] dark:brightness-200" alt="WordPress">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-wp/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-wp/70">CORE</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">WordPress Core</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Expert theme
+                                    architecture,
+                                    performance optimization, and database migrations.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                    Specializing in custom REST API endpoints, WP-CLI automation, and complex multisite
+                                    architectures.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                                    class="w-8 h-8 object-contain" alt="HTML5">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-orange-500/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-orange-500/70">STYLE</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">HTML & CSS</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Precision styling using
+                                    Tailwind.
+                                    Crafting accessible, responsive web layouts.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Utilizing
+                                    advanced CSS Grid/Flexbox patterns and animation libraries for fluid, high-performance
+                                    UI.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                                    class="w-8 h-8 object-contain" alt="JavaScript">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-yellow-500/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-yellow-500/70">LOGIC</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">JavaScript</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Modern ES6+ logic and
+                                    async
+                                    data
+                                    handling for dynamic front-end interactivity.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                    Experienced in implementing state management and reactive patterns for seamless
+                                    application workflows.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+                                    class="w-10 h-10 object-contain" alt="PHP">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-php/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-php/70">BACKEND</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Custom Plugins</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Engineering bespoke
+                                    backend
+                                    PHP
+                                    logic that goes beyond standard repo options.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Developing
+                                    scalable hooks, custom post types, and secure admin interfaces for enhanced
+                                    functionality.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(33,117,155,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.simpleicons.org/elementor/E31B6D" class="w-8 h-8 object-contain"
+                                    alt="Elementor">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-brand-elementor/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-brand-elementor/70">UI</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Extensions</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Building Elementor
+                                    widgets and
+                                    custom Gutenberg blocks using React hooks.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">Building
+                                    high-performance UI components with dynamic controls and optimized rendering cycles.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(99,91,255,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.simpleicons.org/stripe/635BFF" class="w-8 h-8 object-contain"
+                                    alt="API & Integrations">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-[#635BFF]/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-[#635BFF]/70">CONNECT</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">API & Integrations</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Architecting seamless data flows between WordPress and third-party ecosystems.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                    Specialized in REST/GraphQL endpoints, OAuth, and real-time synchronization with
+                                    services like Stripe and Salesforce.</p>
+                            </div>                    </div>
+                        <!-- CARD 7: React & Vite -->
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(97,218,251,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                                    class="w-8 h-8 object-contain" alt="React">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-[#61dafb]/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-[#61dafb]/70">FRONTEND</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">React &amp; Vite</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Building fast, modern SPAs with React 19 hooks, component-driven architecture, and Vite for lightning-fast builds.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                    Precision UI with Tailwind CSS 4, crafting responsive and accessible layouts with a utility-first design system.</p>
+                            </div>
+                        </div>
+                        <!-- CARD 8: Node.js & Express -->
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(104,160,99,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                                    class="w-8 h-8 object-contain" alt="Node.js">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-green-500/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-green-500/70">BACKEND</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Node.js &amp; Express</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Engineering scalable RESTful APIs with Express, handling authentication, routing, and server-side business logic.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                    PDF generation with Puppeteer and automated email delivery pipelines using Nodemailer for production workflows.</p>
+                            </div>
+                        </div>
+                        <!-- CARD 9: Firebase Platform -->
+                        <div
+                            class="group transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] relative hover:-translate-y-2 hover:shadow-[0_20px_40px_-20px_rgba(255,160,0,0.3)] p-[10px] bg-white dark:bg-slate-950/90 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col">
+                            <div
+                                class="absolute top-[15px] right-[15px] z-10 w-12 h-12 flex items-center justify-center transition-all duration-500">
+                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+                                    class="w-8 h-8 object-contain" alt="Firebase">
+                            </div>
+                            <div
+                                class="bg-white/60 dark:bg-white/10 backdrop-blur-md rounded-[10px] rounded-tr-[75%] pt-[30px] p-[10px] border border-white/30 dark:border-white/5 transition-all duration-400 h-full group-hover:bg-white/80 dark:group-hover:bg-white/15 group-hover:border-yellow-500/30 flex flex-col">
+                                <span
+                                    class="text-[10px] font-bold tracking-[0.2em] uppercase mb-1 block text-yellow-500/70">CLOUD</span>
+                                <h3 class="text-lg font-bold dark:text-white mb-3 leading-tight">Firebase Platform</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium mb-2">
+                                    Real-time Firestore databases with role-based security rules and Firebase Auth for secure, scalable user management.</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-normal">
+                                    Firebase Storage for file and image uploads, with serverless cloud hosting and deployment via Firebase Hosting.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
 
 
         <!-- PROJECTS -->
-        <section id="projects" class="py-32 px-6 max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-20 flex items-center gap-4">
-                Some Things I've Built
-                <span class="h-[1px] bg-slate-300 dark:bg-slate-800 flex-grow"></span>
-            </h2>
 
-            <div class="space-y-48">
-                <!-- PROJECT 1: IMAGE LEFT, TEXT RIGHT -->
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="w-full md:w-3/5 project-image-wrapper z-0">
-                        <img src="assets/images/fba-dashboard.png" alt="Slide 1" class="active-slide">
-                        <img src="assets/images/sections.png" alt="Slide 2">
-                        <img src="assets/images/results.png" alt="Slide 3">
-                        <img src="assets/images/sections.png" alt="Slide 4">
-                        <img src="assets/images/users.png" alt="Slide 5">
-                        <img src="assets/images/settings.png" alt="Slide 6">
-                        <img src="assets/images/payment.png" alt="Slide 7">
-                    </div>
-                    <div class="w-full md:w-1/2 md:-ml-20 text-right z-10 mt-6 md:mt-0 flex flex-col items-end">
-                        <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
-                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Bespoke Business
-                            Assessment Engine</h3>
-                        <div
-                            class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                            A sophisticated WordPress-based diagnostic platform developed for FBTransitions. Features a
-                            custom-built algorithmic scoring engine that evaluates business health across multiple
-                            dimensions. Includes a seamless PayFast gateway integration and professional consulting
-                            results.
-                            <br>Engineered with a proprietary algorithmic core, this platform goes beyond simple data
-                            collection to perform real-time diagnostic analysis, translating complex user inputs into
-                            actionable business classifications and risk assessments through custom-coded PHP logic.
+            <section id="projects" class="py-32 px-6 max-w-6xl mx-auto relative z-10">
+                <h2 class="text-3xl font-bold text-slate-950 dark:text-white mb-20 flex items-center gap-4">
+                    Technical Insights
+                    <span class="h-[1px] bg-slate-300 dark:bg-slate-800 flex-grow"></span>
+                </h2>
+
+                <div class="space-y-48">
+                    <!-- PROJECT 1: IMAGE LEFT, TEXT RIGHT -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="w-full md:w-3/5 project-image-wrapper z-0">
+                            <img src="assets/images/fba-dashboard.png" alt="Dashboard" class="active-slide">
+                            <img src="assets/images/sections.png" alt="Sections">
+                            <img src="assets/images/questions.png" alt="Assessment Questions">
+                            <img src="assets/images/results.png" alt="Diagnostic Results">
+                            <img src="assets/images/users.png" alt="User Management">
+                            <img src="assets/images/settings.png" alt="Engine Settings">
+                            <img src="assets/images/payment.png" alt="Payment Gateway">
                         </div>
-                        <ul
-                            class="flex flex-wrap gap-4 justify-end text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
-                            <li>WordPress Core</li>
-                            <li>PHP</li>
-                            <li>AJAX</li>
-                            <li>MySQL</li>
-                            <li>Dompdf</li>
-                            <li>Rest API</li>
-                        </ul>
-                        <div class="flex justify-end gap-5 text-slate-900 dark:text-white">
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
-                                    size="20"></i></a>
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link"
-                                    size="20"></i></a>
+                        <div class="w-full md:w-1/2 md:-ml-20 text-right z-10 mt-6 md:mt-0 flex flex-col items-end">
+                            <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
+                            <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Bespoke Business
+                                Assessment Engine</h3>
+                            <div
+                                class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                                A sophisticated WordPress-based diagnostic platform developed for FBTransitions. Features a
+                                custom-built algorithmic scoring engine that evaluates business health across multiple
+                                dimensions. Includes a seamless PayFast gateway integration and professional consulting
+                                results.
+                                <br>Engineered with a proprietary algorithmic core, this platform goes beyond simple data
+                                collection to perform real-time diagnostic analysis, translating complex user inputs into
+                                actionable business classifications and risk assessments through custom-coded PHP logic.
+                            </div>
+                            <ul
+                                class="flex flex-wrap gap-4 justify-end text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                                <li>WordPress Core</li>
+                                <li>PHP</li>
+                                <li>AJAX</li>
+                                <li>MySQL</li>
+                                <li>Dompdf</li>
+                                <li>Rest API</li>
+                            </ul>
+                            <div class="flex justify-end gap-5 text-slate-900 dark:text-white">
+                                <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
+                                        size="20"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 2: IMAGE RIGHT, TEXT LEFT (MIRRORED) -->
+                    <div class="flex flex-col md:flex-row-reverse items-center">
+                        <div class="w-full md:w-3/5 project-image-wrapper z-0">
+                            <img src="assets/images/analytics-dashboard.png" alt="WP Engine" class="active-slide">
+                            <img src="assets/images/comparison.png" alt="Slide 2">
+                            <img src="assets/images/sales-summary.png" alt="Slide 3">
+                            <img src="assets/images/customers.png" alt="Slide 4">
+                            <img src="assets/images/forecast.png" alt="Slide 5">
+                        </div>
+                        <div class="w-full md:w-1/2 md:-mr-20 text-left z-10 mt-6 md:mt-0 flex flex-col items-start">
+                            <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
+                            <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Woocommerce Orders
+                                Analytics Dashboard</h3>
+                            <div
+                                class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                                A sophisticated, high-performance analytics extension for WooCommerce designed to handle
+                                million-row datasets with near-instant responsiveness. It features custom-engineered SQL
+                                queries, predictive sales forecasting using cumulative trends, and deep-dive
+                                product/category comparison tools. The dashboard replaces standard WordPress reporting with
+                                a premium, data-dense interface optimized for enterprise-level store management </div>
+                            <ul
+                                class="flex flex-wrap gap-4 justify-start text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                                <li>PHP</li>
+                                <li>SQL</li>
+                                <li>Charts.js</li>
+                                <li>Rest API</li>
+                                <li>Woocommerce Hooks</li>
+                            </ul>
+                            <div class="flex justify-start gap-5 text-slate-900 dark:text-white">
+                                <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
+                                        size="20"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 3: IMAGE LEFT, TEXT RIGHT -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="w-full md:w-3/5 project-image-wrapper z-0">
+                            <img src="assets/images/pr1.png" alt="Settings Dashboard" class="active-slide">
+                            <img src="assets/images/pr2.png" alt="User Management">
+                            <img src="assets/images/pr3.png" alt="Review Points Settings">
+                            <img src="assets/images/pr4.png" alt="Referral Settings">
+                        </div>
+                        <div class="w-full md:w-1/2 md:-ml-20 text-right z-10 mt-6 md:mt-0 flex flex-col items-end">
+                            <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
+                            <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">WooCommerce Points &amp; Rewards</h3>
+                            <div
+                                class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                                A comprehensive points and rewards extension for WooCommerce engineered to boost customer retention and sales. Features an advanced earning engine where customers accrue points based on order spending totals.
+                                <br><br>Includes a robust dual-reward referral system generating unique tracking shortcodes, alongside automated point incentives for approved product reviews. Admins can fully manage user balances, analyze system statistics, and configure tailored earning and redemption rules.
+                            </div>
+                            <ul
+                                class="flex flex-wrap gap-4 justify-end text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                                <li>PHP</li>
+                                <li>WooCommerce API</li>
+                                <li>MySQL</li>
+                                <li>JavaScript</li>
+                                <li>WordPress Hooks</li>
+                            </ul>
+                            <div class="flex justify-end gap-5 text-slate-900 dark:text-white">
+                                <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
+                                        size="20"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 4: IMAGE RIGHT, TEXT LEFT (MIRRORED) -->
+                    <div class="flex flex-col md:flex-row-reverse items-center">
+                        <div class="w-full md:w-3/5 project-image-wrapper z-0">
+                            <img src="assets/images/edu2.png" alt="Dashboard Overview" class="active-slide">
+                            <img src="assets/images/edu1.png" alt="Student Admission Form">
+                            <img src="assets/images/edu3.png" alt="Staff Management">
+                            <img src="assets/images/edu4.png" alt="Daily Attendance">
+                            <img src="assets/images/edu5.png" alt="Classes & Students">
+                        </div>
+                        <div class="w-full md:w-1/2 md:-mr-20 text-left z-10 mt-6 md:mt-0 flex flex-col items-start">
+                            <p class="text-brand-wp font-mono text-xs mb-1">Full-Stack SaaS Platform</p>
+                            <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Enterprise School Management SaaS</h3>
+                            <div
+                                class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
+                                A high-performance, multi-tenant educational management system designed for institutional automation. Features a real-time pulse dashboard for data tracking, dynamic student admission workflows, and comprehensive staff/payroll management.
+                                <br><br>Engineered for extreme scalability and data integrity, the platform centralizes institutional operations—from attendance tracking to academic results—ensuring seamless coordination across all administrative layers through a modular React architecture.
+                            </div>
+                            <ul
+                                class="flex flex-wrap gap-4 justify-start text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
+                                <li>React</li>
+                                <li>Node.js</li>
+                                <li>Express</li>
+                                <li>Firebase</li>
+                                <li>Tailwind CSS</li>
+                                <li>Lucide Icons</li>
+                            </ul>
+                            <div class="flex justify-start gap-5 text-slate-900 dark:text-white">
+                                <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
+                                        size="20"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- PROJECT 2: IMAGE RIGHT, TEXT LEFT (MIRRORED) -->
-                <div class="flex flex-col md:flex-row-reverse items-center">
-                    <div class="w-full md:w-3/5 project-image-wrapper z-0">
-                        <img src="assets/images/analytics-dashboard.png" alt="WP Engine" class="active-slide">
-                        <img src="assets/images/comparison.png" alt="Slide 2">
-                        <img src="assets/images/sales-summary.png" alt="Slide 3">
-                        <img src="assets/images/customers.png" alt="Slide 4">
-                        <img src="assets/images/forecast.png" alt="Slide 5">
-                    </div>
-                    <div class="w-full md:w-1/2 md:-mr-20 text-left z-10 mt-6 md:mt-0 flex flex-col items-start">
-                        <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
-                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">Woocommerce Orders
-                            Analytics Dashboard</h3>
-                        <div
-                            class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                            A sophisticated, high-performance analytics extension for WooCommerce designed to handle
-                            million-row datasets with near-instant responsiveness. It features custom-engineered SQL
-                            queries, predictive sales forecasting using cumulative trends, and deep-dive
-                            product/category comparison tools. The dashboard replaces standard WordPress reporting with
-                            a premium, data-dense interface optimized for enterprise-level store management </div>
-                        <ul
-                            class="flex flex-wrap gap-4 justify-start text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
-                            <li>PHP</li>
-                            <li>SQL</li>
-                            <li>Charts.js</li>
-                            <li>Rest API</li>
-                            <li>Woocommerce Hooks</li>
-                        </ul>
-                        <div class="flex justify-start gap-5 text-slate-900 dark:text-white">
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
-                                    size="20"></i></a>
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link"
-                                    size="20"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PROJECT 3: IMAGE LEFT, TEXT RIGHT -->
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="w-full md:w-3/5 project-image-wrapper z-0">
-                        <img src="assets/images/pr4.png" alt="Referral Settings" class="active-slide">
-                        <img src="assets/images/pr3.png" alt="Review Points Settings">
-                        <img src="assets/images/pr2.png" alt="User Management">
-                        <img src="assets/images/pr1.png" alt="Settings Dashboard">
-                    </div>
-                    <div class="w-full md:w-1/2 md:-ml-20 text-right z-10 mt-6 md:mt-0 flex flex-col items-end">
-                        <p class="text-brand-wp font-mono text-xs mb-1">Custom Plugin</p>
-                        <h3 class="text-2xl font-bold text-slate-950 dark:text-white mb-4 w-3/4">WooCommerce Points &amp; Rewards</h3>
-                        <div
-                            class="bg-white dark:bg-slate-900 p-6 rounded-md shadow-2xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">
-                            A comprehensive points and rewards extension for WooCommerce engineered to boost customer retention and sales. Features an advanced earning engine where customers accrue points based on order spending totals.
-                            <br><br>Includes a robust dual-reward referral system generating unique tracking shortcodes, alongside automated point incentives for approved product reviews. Admins can fully manage user balances, analyze system statistics, and configure tailored earning and redemption rules.
-                        </div>
-                        <ul
-                            class="flex flex-wrap gap-4 justify-end text-[12px] font-mono text-slate-500 dark:text-slate-400 mb-6">
-                            <li>PHP</li>
-                            <li>WooCommerce API</li>
-                            <li>MySQL</li>
-                            <li>JavaScript</li>
-                            <li>WordPress Hooks</li>
-                        </ul>
-                        <div class="flex justify-end gap-5 text-slate-900 dark:text-white">
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="github"
-                                    size="20"></i></a>
-                            <a href="#" class="hover:text-brand-wp transition"><i data-lucide="external-link"
-                                    size="20"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <footer id="contact" class="pt-8 relative z-10 bg-slate-950 text-white text-center">
-            <h2 class="text-4xl font-extrabold mb-6 tracking-tighter uppercase">Need a Custom Solution?</h2>
-            <a href="mailto:contact@zakirali.dev"
-                class="inline-flex items-center gap-2 px-10 py-4 bg-brand-wp text-white rounded-full hover:bg-sky-600 transition font-bold shadow-xl active:scale-95">
-                <i data-lucide="mail"></i> Discuss Your Project
-            </a>
-            <p class="mt-20 text-slate-500 text-sm font-medium">&copy; 2024 Zakir Ali. WordPress Architect Excellence.
-            </p>
-        </footer>
+            <!-- CONTACT -->
+            <footer id="contact" class="pt-8 relative z-10 bg-slate-950 text-white text-center">
+                <h2 class="text-4xl font-extrabold mb-6 tracking-tighter uppercase">Need a Custom Solution?</h2>
+                <a href="mailto:contact@zakirali.dev"
+                    class="inline-flex items-center gap-2 px-10 py-4 bg-brand-wp text-white rounded-full hover:bg-sky-600 transition font-bold shadow-xl active:scale-95">
+                    <i data-lucide="mail"></i> Discuss Your Project
+                </a>
+                <p class="mt-20 text-slate-500 text-sm font-medium">&copy; 2026 Zakir Ali. WordPress Architect Excellence.
+                </p>
+            </footer>
     </div>
 
     <script>
@@ -923,10 +1018,11 @@
         const themeText = document.getElementById('theme-text');
         const themeIconContainer = document.getElementById('wheel-icon-container');
 
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark'); updateUI(true);
-        } else {
+        // Default to dark mode unless explicitly set to light
+        if (localStorage.theme === 'light') {
             html.classList.remove('dark'); updateUI(false);
+        } else {
+            html.classList.add('dark'); updateUI(true);
         }
 
         function updateUI(isDark) {
@@ -950,7 +1046,7 @@
                     document.getElementById('loader').style.display = 'none';
                     initParticles(); animate();
                 }, 500);
-            }, 3500);
+            }, 1100);
         });
 
         const setupTilt = (wrapperId, tiltId) => {
@@ -986,23 +1082,75 @@
         };
         const windowOrder = ['elementor', 'plugin', 'react'];
 
+        const personas = {
+            'elementor': {
+                top: 'Crafting',
+                badge: 'Advanced Visual Architect',
+                main: 'Bespoke Widgets',
+                suffix: 'Where Standard Designs Reach Limits.',
+                desc: 'I bridge the gap between complex design visions and technical execution through custom-coded Elementor extensions that push development boundaries and redefine standard UI patterns.'
+            },
+            'plugin': {
+                top: 'Engineering',
+                badge: 'Custom WordPress Engineering',
+                main: 'Custom Logic',
+                suffix: 'Where Standard Plugins Fall Short.',
+                desc: 'I architect high-performance solutions for complex backend requirements that the WordPress repository doesn\'t provide, bridging the gap with secure and performant PHP logic.'
+            },
+            'react': {
+                top: 'Architecting',
+                badge: 'Full-Stack Web Architect',
+                main: 'Modern Apps',
+                suffix: 'Where Generic Solutions Fail.',
+                desc: 'I engineer high-performance React applications and scalable cloud backends, optimized for speed and security to ensure your digital products stand out in a competitive global market.'
+            }
+        };
+
+        const heroElements = {
+            top: document.getElementById('headline-top'),
+            badge: document.getElementById('badge-text'),
+            main: document.getElementById('headline-main'),
+            suffix: document.getElementById('headline-suffix'),
+            desc: document.getElementById('hero-desc')
+        };
+
         function switchCode(target) {
+            // Update Code Windows
             Object.keys(windows).forEach(key => {
                 const { win, tab, color } = windows[key];
                 const content = win.querySelector('.code-content');
                 if (key === target) {
                     win.classList.replace('opacity-0', 'opacity-100');
                     win.classList.remove('pointer-events-none');
-                    tab.className = `px-6 py-2 text-[11px] font-mono bg-slate-900 ${color} border-none chrome-tab uppercase cursor-default transition-all`;
+                    tab.className = `px-6 py-2 text-[11px] font-mono bg-slate-900 ${color} border-none chrome-tab cursor-default transition-all`;
                     content.classList.remove('animate-code');
                     void content.offsetWidth;
                     content.classList.add('animate-code');
                 } else {
                     win.classList.replace('opacity-100', 'opacity-0');
                     win.classList.add('pointer-events-none');
-                    tab.className = `px-6 py-2 text-[11px] font-mono text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent border-none uppercase transition-all`;
+                    tab.className = `px-6 py-2 text-[11px] font-mono text-slate-500 hover:text-slate-300 cursor-pointer bg-transparent border-none transition-all`;
                 }
             });
+
+            // Update Hero Content
+            Object.values(heroElements).forEach(el => {
+                if(el) el.style.opacity = '0';
+            });
+            setTimeout(() => {
+                const p = personas[target];
+                if (p && heroElements.top) {
+                    heroElements.top.textContent = p.top;
+                    heroElements.badge.textContent = p.badge;
+                    heroElements.main.textContent = p.main;
+                    heroElements.suffix.textContent = p.suffix;
+                    heroElements.desc.textContent = p.desc;
+                    Object.values(heroElements).forEach(el => {
+                        if(el) el.style.opacity = '1';
+                    });
+                }
+            }, 300);
+
             activeWindow = target;
         }
         
